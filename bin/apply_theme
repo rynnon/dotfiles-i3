@@ -71,12 +71,12 @@ then
     echo '  [-] Failed to apply .Xresources configuration file'
   fi
 
-  # if cp ../$THEME/.resources/.extend.Xresources ~/.extend.Xresources
-  # then
-  #   echo '  [+] .extend.Xresources file set up successfully'
-  # else
-  #   echo '  [-] Failed to apply .extend.Xresources configuration file'
-  # fi
+  if cp $THEME_DIR/$THEME/extend.Xresources ~/.extend.Xresources
+  then
+    echo '  [+] .extend.Xresources file set up successfully'
+  else
+    echo '  [-] Failed to apply .extend.Xresources configuration file'
+  fi
 
   if xrdb ~/.Xresources
   then
@@ -120,7 +120,7 @@ then
   then
     if [ -d "/$HOME/.themes/" ]
     then
-      if cp -R  ../$THEME/.themes/. ~/.themes/
+      if cp -R  $THEME_DIR/$THEME/.themes/. ~/.themes/
       then
         echo  '  [+] GTK Theme migration completed successfully'
       else
@@ -145,12 +145,26 @@ then
     echo '  [-] This theme does not have a GTK Theme included'
   fi
 
+  if cp $THEME_DIR/$THEME/xsettingsd ~/.xsettingsd
+  then
+    echo '  [+] xsettingsd file set up successfully'
+  else
+    echo '  [-] Failed to apply xsettingsd file'
+  fi
+
+  if xsettingsd &
+  then
+    echo '  [+] Icons and GTK Themes applied successfully'
+  else
+    echo '  [-] Failed to apply GTK theme'
+  fi
+
   # Copying the Icons into the right folder
   if [ -d "$THEME_DIR/$THEME/.icons" ]
   then
     if [ -d "/$HOME/.icons/" ]
     then
-      if cp -R ../$THEME/.icons/. ~/.icons/
+      if cp -R $THEME_DIR/$THEME/.icons/. ~/.icons/
       then
         echo '  [+] Icon migration completed successfully'
       else
@@ -205,6 +219,5 @@ else
 fi
 
 echo '[*] Script exiting...'
-echo '[!] Use your Appearance Manager to set the Icons and GTK+ Themes'
 
 exit

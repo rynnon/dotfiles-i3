@@ -16,7 +16,7 @@ URxvt.color13:  #ff6f9f
 URxvt.color14:  #ed4781
 URxvt.color15:  #e88e2c
 
-URxvt.background: #292a44
+URxvt.background: #1B1C38
 URxvt.foreground: #678bdc
 
 URxvt.font: xft:Fira Mono:size=9
