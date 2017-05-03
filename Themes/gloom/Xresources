@@ -43,8 +43,8 @@ rofi.color-active: #2de0a7, #ffffff, #2de0a7, #2de0a7, #2de0a7
 rofi.color-urgent: #fdf6e3, #dc322f, #eee8d5, #dc322f, #fdf6e3
 
 rofi.fake-transparency: true
-rofi.font: Monaco 9
-rofi.columns: 3
+rofi.font: Fira Mono 11
+rofi.columns: 1
 rofi.separator-style: none
 rofi.hide-scrollbar: true
 rofi.location: 0
