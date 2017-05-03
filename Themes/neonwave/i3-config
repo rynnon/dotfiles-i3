@@ -165,7 +165,7 @@ client.unfocused        #000000 #000000 #000000 #000000 #000000
 
 # Set inner/outer gaps
 gaps inner 30
-gaps outer -12
+gaps outer -30
 
 # Gaps mode
 set $mode_gaps Gaps: (o) outer, (i) inner
@@ -228,7 +228,7 @@ bindsym $mod+f exec thunar
 ################################################################################
 
 exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
-exec tint2
+exec --no-startup-id tint2
 exec --no-startup-id nm-applet
 exec --no-startup-id pulseaudio &
 exec --no-startup-id volumeicon
