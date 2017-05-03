@@ -40,8 +40,8 @@ xscreensaver.passwd.thermometer.width:       8
 
 !URxvt.font: xft:Monospace:size=9
 !URxvt.boldFont: xft:Monospace:Bold:size=9
-URxvt.font: xft:Fira Mono:size=9
-URxvt.boldFont: xft:Fira Mono:Bold:size=9
+URxvt.font: xft:DejaVu Sans Mono:size=10
+URxvt.boldFont: xft:DejaVu Sans Mono:Bold:size=10
 URxvt.letterSpace: -2
 ! Add fallback fonts as laid out in `man 1 urxvt` under "font:" in the RESOURCES section
 
