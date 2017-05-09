@@ -1,3 +1,67 @@
+
+! font settings --------------------------------------------------------------
+
+Xft.autohint: true
+Xft.antialias: true
+Xft.hinting: true
+Xft.hintstyle: hintslight
+!Xft.dpi: 96
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+
+
+! urxvt -------------------------------------------
+
+URxvt.font: xft:DejaVu Sans Mono:size=10.5
+URxvt.boldFont: xft:DejaVu Sans Mono:Bold:size=10.5
+URxvt.letterSpace: -2
+! Add fallback fonts as laid out in `man 1 urxvt` under "font:" in the RESOURCES section
+
+! Window size and position
+!URxvt*geometry: 60x22+50+100
+! Window size, let the Window Manager position it
+URxvt.geometry: 80x28
+
+URxvt.scrollstyle: plain
+URxvt.scrollBar: true
+URxvt.scrollBar_right: true
+URxvt.iconFile: /usr/share/icons/Faenza-Bunsen-common/apps/48/utilities-terminal.png
+
+! scrollback buffer lines - 65535 is max (64 is default)
+URxvt.saveLines:16384
+
+! Clickble URLs
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/x-www-browser
+URxvt.matcher.button: 3
+
+! sensible copy + paste
+URxvt.perl-ext-common:        default,xkr-clipboard
+URxvt.iso14755:               false
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Control-Insert:  perl:clipboard:copy
+
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.iso14755: False
+URxvt.perl-ext-common: default,clipboard
+
+!transparency
+URxvt.transparent: true
+URxvt*shading: 30
+
+! True transparency, opacity percentage set in square brackets before URxvt.background colour
+!URxvt.depth: 16
+
+URxvt.scrollBar: false
+URxvt.cursorBlink: true
+URxvt.internalBorder: 15
+URxvt.cursorUnderline : true
+URxvt.cursorColor : #B2C7D2
+URxvt.geometry : 70x20
+URxvt.thickness : 5
+
+! colors ----------------------------------------------------------------------
+
 URxvt.color0:   #262626
 URxvt.color1:   #6dfedf
 URxvt.color2:   #e88e2c
@@ -18,19 +82,6 @@ URxvt.color15:  #e88e2c
 
 URxvt.background: #1B1C38
 URxvt.foreground: #678bdc
-
-URxvt.font: xft:Fira Mono:size=9
-URxvt.boldFont: xft:Fira Mono:Bold:size=9
-URxvt.letterSpace: -2
-
-URxvt.shading: 30
-URxvt.scrollBar: false
-URxvt.cursorBlink: true
-URxvt.internalBorder: 15
-URxvt.cursorUnderline : true
-URxvt.cursorColor : #B2C7D2
-URxvt.geometry : 70x20
-URxvt.thickness : 5
 
 
 ! ------------------------------------------------------------------------------
