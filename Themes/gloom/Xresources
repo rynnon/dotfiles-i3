@@ -46,11 +46,11 @@ URxvt.iso14755: False
 URxvt.perl-ext-common: default,clipboard
 
 !transparency
-URxvt.transparent: true
-URxvt*shading: 30
+!URxvt.transparent: true
+URxvt*shading: 15
 
 ! True transparency, opacity percentage set in square brackets before URxvt.background colour
-!URxvt.depth: 16
+URxvt.depth: 16
 
 URxvt.scrollBar: false
 URxvt.cursorBlink: true

@@ -161,13 +161,14 @@ smart_borders on
 
 # Window Colors
 # class                 border  backgr. text
-client.focused          #8CA3B9 #8CA3B9 #222222
+client.focused          #678bdc #e88e2c #222222
 client.focused_inactive #304153 #343D46 #ffffff
 client.unfocused        #304153 #343D46 #ffffff
 client.urgent           #900000 #6ca05a #B2C7D2
 
 # Set inner/outer gaps
-gaps inner 10
+gaps inner 20
+gaps outer -10
 
 # Gaps mode
 set $mode_gaps Gaps: (o) outer, (i) inner
