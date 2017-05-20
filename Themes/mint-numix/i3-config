@@ -160,14 +160,13 @@ smart_gaps on
 smart_borders on
 
 # Some color adjustments
-client.focused_inactive #000000 #000000 #00ffff #000000 #000000
-client.unfocused        #000000 #000000 #00ffff #000000 #000000
-client.focused          #00afd7 #00afd7 #000000 #00afd7 #00afd7
-
+client.focused_inactive #000000 #000000 #bb9922 #000000 #000000
+client.unfocused        #000000 #000000 #bb9922 #000000 #000000
+client.focused          #ffdd22 #ffdd22 #000000 #ffdd22 #ffdd22
 
 # Set inner/outer gaps
-gaps inner 30
-gaps outer -30
+gaps inner 25
+gaps outer -25
 
 # Gaps mode
 set $mode_gaps Gaps: (o) outer, (i) inner
@@ -230,10 +229,9 @@ bindsym $mod+f exec thunar
 ################################################################################
 
 exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id tint2
+exec tint2
 exec --no-startup-id nm-applet
 exec --no-startup-id pulseaudio &
 exec --no-startup-id volumeicon
 exec --no-startup-id ~/.fehbg
 exec --no-startup-id xsettingsd
-exec --no-startup-id ~/bin/init_workspace.sh
