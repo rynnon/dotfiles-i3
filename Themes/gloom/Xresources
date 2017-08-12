@@ -12,8 +12,8 @@ Xft.lcdfilter: lcddefault
 
 ! urxvt -------------------------------------------
 
-URxvt.font: xft:DejaVu Sans Mono:size=10.5
-URxvt.boldFont: xft:DejaVu Sans Mono:Bold:size=10.5
+URxvt.font: xft:Ubuntu Mono:size=13
+URxvt.boldFont: xft:Ubuntu Mono:Bold:size=13
 URxvt.letterSpace: -2
 ! Add fallback fonts as laid out in `man 1 urxvt` under "font:" in the RESOURCES section
 
