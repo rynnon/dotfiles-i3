@@ -1,6 +1,10 @@
 touch color.sh
 open_with 1
 touch rifle.conf
-delete
 touch rc.conf
 open_with nano
+cd /tmp
+delete
+open_with ange
+cd .mozilla
+
