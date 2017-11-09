@@ -148,3 +148,6 @@ rofi.color-urgent: #000000, #d700ff, #0c0c0c, #e83b3f, #ffc39c
 rofi.hide-scrollbar: true
 rofi.width: 500
 rofi.lines: 8
+
+rofi.bw: 4
+rofi.font: Noto Sans Regular 13
