@@ -6,6 +6,9 @@
 ;   The README contains alot of information
 ;
 ;=====================================================
+;
+; symbol reference (just copy and paste the symbols in):
+; http://fontawesome.io/cheatsheet/
 
 [colors]
 background = ${xrdb:background:#229933}
@@ -19,7 +22,7 @@ primary = #ffb52a
 secondary = #e60053
 alert = #e83b3f
 
-[bar/jade]
+[bar/bottom]
 bottom = true
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
@@ -44,20 +47,21 @@ padding-right = 0
 module-margin-left = 2
 module-margin-right = 2
 
-font-0 = FontAwesome:size=9;0
-font-1 = togoshi-mono:size=9:weight=bold;0
+font-0 = FontAwesome:size=10.5;0
+;font-1 = Noto Sans:size=10.5:weight=regular;0
+font-1 = Noto Sans:size=10.5:weight=regular;0
 
-modules-left = i3 
-modules-center = cpu memory wlan
-modules-right = mpd mpd2 date
+modules-left = i3 cpu memory wlan
+modules-center = 
+modules-right = mpd mpd2 volume date
 
 ;tray-position = right
 ;tray-padding = 2
 ;tray-transparent = false
 ;tray-background = #0063ff
 
-scroll-up = i3wm-wsnext
-scroll-down = i3wm-wsprev
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -132,7 +136,7 @@ label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
 label-focused = 
-label-focused-background = ${module/bspwm.label-focused-background}
+label-focused-background = ${colors.background}
 label-focused-underline = ${module/bspwm.label-focused-underline}
 label-focused-padding = ${module/bspwm.label-focused-padding}
 
@@ -155,6 +159,7 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 type = internal/mpd
 port = 6602
 format-online = <label-song>
+format-online-foreground = #26bbd1
 
 icon-play = 
 icon-pause = 
@@ -235,7 +240,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "CPU "
+format-prefix = "|   CPU "
 ;format-prefix-foreground = ${colors.foreground}
 ;format-underline = #f90000
 ;label = %percentage:2%%
@@ -281,7 +286,7 @@ interval = 3.0
 format-connected-prefix = "|    "
 format-connected = <label-connected>
 format-connected-underline = #9f78e1
-label-connected = WLAN-7FA673
+label-connected =  WLAN-7FA673
 
 format-disconnected-prefix = "|    "
 format-disconnected = <label-disconnected>
@@ -319,11 +324,13 @@ interval = 5
 date = ""
 date-alt = "%Y-%m-%d"
 
-time = %I:%M %p
+format-prefix = "|  "
+time = %H:%M 
 time-alt = ""
-
-format-suffix = "   "
-format-prefix-foreground = ${colors.foreground-alt}
+3
+format-suffix = " Uhr  "
+format-suffic-alt = " "
+format-prefix-foreground = ${colors.foreground}
 format-underline = #0a6cf5
 
 label-foreground = ${colors.foreground-alt}
@@ -332,13 +339,21 @@ label = "%date%%time% "
 [module/volume]
 type = internal/volume
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL
-label-volume-foreground = ${root.foreground}
+;mapped = true
 
-format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
+format-volume = <label-volume> <bar-volume> 
+format-volume-background = #102735
+format-volume-prefix = " "
+;format-volume-prefix-foreground = foreground
+format-volume-suffix = "  "
+;format-volume-suffix-foreground = foreground
+label-volume =  "  "
+label-volume-foreground = foreground
+
+;label-muted = 🔇 muted
+format-muted-prefix = "   "
 label-muted = sound muted
+format-muted-foreground = ${colors.alert}
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
@@ -349,11 +364,12 @@ bar-volume-foreground-4 = #55aa55
 bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
-bar-volume-indicator = |
+bar-volume-indicator = 0
+bar-volume-indicator-foreground = foreground
 bar-volume-indicator-font = 2
-bar-volume-fill = ─
+bar-volume-fill = 
 bar-volume-fill-font = 2
-bar-volume-empty = ─
+bar-volume-empty = 
 bar-volume-empty-font = 2
 bar-volume-empty-foreground = ${colors.foreground-alt}
 
