@@ -10,20 +10,20 @@
 [colors]
 background = ${xrdb:background:#229933}
 ;background = #229933
-;background = #222
+;background = #000000
 background-alt = #444
-foreground = ${xrdb:foreground:#222}
+foreground = ${xrdb:color15:#fff}
 ;foreground = #dfdfdf
-foreground-alt = #555
+foreground-alt = #ffea2e
 primary = #ffb52a
 secondary = #e60053
-alert = #bd2c40
+alert = #e83b3f
 
 [bar/jade]
 bottom = true
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 32
+height = 24
 ;offset-x = 0
 ;offset-y = 0
 radius = 0
@@ -44,16 +44,16 @@ padding-right = 0
 module-margin-left = 2
 module-margin-right = 2
 
-font-0 = FontAwesome:size=10;0
-font-1 = togoshi-mono:size=10:weight=bold;0
+font-0 = FontAwesome:size=9;0
+font-1 = togoshi-mono:size=9:weight=bold;0
 
-modules-left = i3
-modules-center =
+modules-left = i3 
+modules-center = cpu memory wlan
 modules-right = mpd mpd2 date
 
 ;tray-position = right
 ;tray-padding = 2
-;tray-transparent = true
+;tray-transparent = false
 ;tray-background = #0063ff
 
 scroll-up = i3wm-wsnext
@@ -61,6 +61,12 @@ scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+; Enable pseudo transparency
+; Will automatically be enabled if a fully transparent
+; background color is defined using `tray-background`
+tray-transparent = false
+tray-background = transparent
 
 [module/xwindow]
 type = internal/xwindow
@@ -229,33 +235,59 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
-label = %percentage:2%%
+format-prefix = "CPU "
+;format-prefix-foreground = ${colors.foreground}
+;format-underline = #f90000
+;label = %percentage:2%%
+
+; Available tags:
+;   <label> (default)
+;   <bar-load>
+;   <ramp-load>
+;   <ramp-coreload>
+;format = <label> <ramp-coreload>
+
+; Available tokens:
+;   %percentage% (default) - total cpu load
+;   %percentage-cores% - load percentage for each core
+;   %percentage-core[1-9]% - load percentage for specific core
+label-foreground = ${colors.foreground-alt}
+label = %percentage%%
+
+;ramp-coreload-0 = ▁
+;ramp-coreload-1 = ▂
+;ramp-coreload-2 = ▃
+;ramp-coreload-3 = ▄
+;ramp-coreload-4 = ▅
+;ramp-coreload-5 = ▆
+;ramp-coreload-6 = ▇
+;ramp-coreload-7 = █
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
+format-prefix = "|   RAM "
+format-prefix-foreground = ${colors.foreground}
+;format-underline = #4bffdc
+
+label-foreground = ${colors.foreground-alt}
 label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = 
+interface = wlx8416f91d1abc
 interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
+format-connected-prefix = "|    "
+format-connected = <label-connected>
 format-connected-underline = #9f78e1
-label-connected = %essid%
+label-connected = WLAN-7FA673
 
-format-disconnected =
-;format-disconnected = <label-disconnected>
+format-disconnected-prefix = "|    "
+format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
-;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
+label-disconnected = WLAN disconnected
+label-disconnected-foreground = ${colors.alert}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
@@ -291,9 +323,10 @@ time = %I:%M %p
 time-alt = ""
 
 format-suffix = "   "
-format-prefix-foreground = ${colors.foreground}
+format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
+label-foreground = ${colors.foreground-alt}
 label = "%date%%time% "
 
 [module/volume]
