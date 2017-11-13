@@ -41,7 +41,7 @@ xscreensaver.passwd.thermometer.width:       8
 
 URxvt.font: xft:iosevka-term:size=10.5
 URxvt.boldFont: xft:iosevka-term:Bold:size=10.5
-!URxvt.letterSpace: -2
+URxvt.letterSpace: -1
 
 ! fix for invisible underscore at certain fontsizes:
 URxvt.lineSpace: 1
