@@ -40,8 +40,8 @@ xscreensaver.passwd.thermometer.width:       8
 
 !URxvt.font: xft:Monospace:size=9
 !URxvt.boldFont: xft:Monospace:Bold:size=9
-URxvt.font: xft:DejaVu Sans Mono for Powerline:size=10.5
-URxvt.boldFont: xft:DejaVu Sans Mono for Powerline:Bold:size=10.5
+URxvt.font: xft:DejaVu Sans Mono:size=10.5
+URxvt.boldFont: xft:DejaVu Sans Mono:Bold:size=10.5
 URxvt.letterSpace: -2
 ! Add fallback fonts as laid out in `man 1 urxvt` under "font:" in the RESOURCES section
 
@@ -58,8 +58,14 @@ URxvt.iconFile: /usr/share/icons/Faenza-Bunsen-common/apps/48/utilities-terminal
 ! scrollback buffer lines - 65535 is max (64 is default)
 URxvt.saveLines:16384
 
-! True transparency, opacity percentage set in square brackets before URxvt.background colour
-URxvt.depth: 16
+! True transparency, opacity percentage set in square brackets before 
+! URxvt.background colour
+!URxvt.depth: 32
+!URxvt.background: [60]#000
+
+! Fake transparency
+URxvt.transparent: true
+URxvt*shading: 30
 
 ! Clickble URLs
 URxvt.perl-ext-common: default,matcher
@@ -76,9 +82,7 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.iso14755: False
 URxvt.perl-ext-common: default,clipboard
 
-!transparency
-URxvt.transparent: true
-URxvt*shading: 15
+
 
 ! special
 *.foreground:   #ffffff

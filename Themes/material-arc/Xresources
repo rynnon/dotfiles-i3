@@ -55,18 +55,18 @@ URxvt.scrollBar: true
 URxvt.scrollBar_right: true
 URxvt.iconFile: /usr/share/icons/Faenza-Bunsen-common/apps/48/utilities-terminal.png
 
-! Grey theming
-!URxvt*background: #cecece
-!URxvt*foreground: #101010
-! Terminator Crunchbang colours
-!URxvt.background: rgba:0000/0000/0200/c800
-!URxvt.foreground: #d8d8d8
-
 ! scrollback buffer lines - 65535 is max (64 is default)
 URxvt.saveLines:16384
 
-! True transparency, opacity percentage set in square brackets before URxvt.background colour
-URxvt.depth: 16
+! True transparency, opacity percentage set in square brackets before 
+! URxvt.background colour
+!URxvt.depth: 32
+!URxvt.background: [80]#000
+! fake transparency
+URxvt.transparent: true
+URxvt*shading: 15
+
+
 
 ! Clickble URLs
 URxvt.perl-ext-common: default,matcher
@@ -82,10 +82,6 @@ URxvt.keysym.Control-Insert:  perl:clipboard:copy
 URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.iso14755: False
 URxvt.perl-ext-common: default,clipboard
-
-!transparency
-URxvt.transparent: false
-URxvt*shading: 30
 
 ! Custom colourscheme, see http://terminal.sexy/ for more ideas.
 
