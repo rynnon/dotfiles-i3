@@ -221,11 +221,14 @@ bindsym $mod+t exec pcmanfm
 
 exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
 exec tint2
-exec --no-startup-id nm-applet
+exec --no-startup-id nm-applet &
 exec --no-startup-id pulseaudio &
-exec --no-startup-id volumeicon
+exec --no-startup-id volumeicon &
 exec --no-startup-id ~/.fehbg
 exec --no-startup-id xsettingsd
+exec --no-startup-id mpd ~/.mpd/mpd.conf
+exec --no-startup-id killall polybar
+exec --no-startup-id polybar bottom &
 
 exec --no-startup-id xset s off
 exec --no-startup-id xset -dpms

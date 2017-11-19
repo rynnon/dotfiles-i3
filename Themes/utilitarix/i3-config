@@ -226,6 +226,9 @@ exec --no-startup-id pulseaudio &
 exec --no-startup-id volumeicon
 exec --no-startup-id ~/.fehbg
 exec --no-startup-id xsettingsd
+exec --no-startup-id mpd ~/.mpd/mpd.conf
+exec --no-startup-id killall polybar
+exec --no-startup-id polybar bottom &
 
 exec --no-startup-id xset s off
 exec --no-startup-id xset -dpms
