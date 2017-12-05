@@ -19,9 +19,11 @@ cd minimal
 cd modprobe.d
 touch wi-fi-keeps-failing.sh
 
-open_with 
-delete
 mkdir crosscode
 touch userChrome.css
 touch userContent.css
 cd Themes
+cd .config/ranger
+open_with 
+delete
+open_with micro
