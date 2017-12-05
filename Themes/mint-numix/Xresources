@@ -38,10 +38,8 @@ xscreensaver.passwd.thermometer.width:       8
 
 ! urxvt -------------------------------------------
 
-!URxvt.font: xft:Monospace:size=9
-!URxvt.boldFont: xft:Monospace:Bold:size=9
-URxvt.font: xft:DejaVu Sans Mono:size=10.5
-URxvt.boldFont: xft:DejaVu Sans Mono:Bold:size=10.5
+URxvt.font: xft:DejaVu Sans Mono:size=10
+URxvt.boldFont: xft:DejaVu Sans Mono:Bold:size=10
 URxvt.letterSpace: -2
 ! Add fallback fonts as laid out in `man 1 urxvt` under "font:" in the RESOURCES section
 
@@ -133,3 +131,9 @@ URxvt*shading: 30
 *.colorBD:     #ffea2e
 !*.colorIT:
 !*.colorUL:
+
+! Rofi colors, generated with wpgtk
+rofi.color-window: #0C0C0C, #0C0C0C, #fe1416
+rofi.color-normal: #0C0C0C, #a5bcfe, #0C0C0C, #fe1416, #0C0C0C
+rofi.color-active: #0C0C0C, #a5bcfe, #0C0C0C, #fe1416, #0C0C0C
+rofi.color-urgent: #0C0C0C, #fefa3b, #0C0C0C, #fefa3b, #a5bcfe

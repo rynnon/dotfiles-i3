@@ -2,9 +2,26 @@ touch color.sh
 open_with 1
 touch rifle.conf
 touch rc.conf
-open_with nano
 cd /tmp
-delete
 open_with ange
 cd .mozilla
+cd .icons
+cd .themes
+cd Downloads
+wallpaper
+cd nginx
+touch passwords
+touch passwords.txt
+open_with nano
+cd .local
+cd TERA
+cd minimal
+cd modprobe.d
+touch wi-fi-keeps-failing.sh
 
+open_with 
+delete
+mkdir crosscode
+touch userChrome.css
+touch userContent.css
+cd Themes

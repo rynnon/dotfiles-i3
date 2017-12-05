@@ -38,11 +38,16 @@ xscreensaver.passwd.thermometer.width:       8
 
 ! urxvt -------------------------------------------
 
-!URxvt.font: xft:Monospace:size=9
-!URxvt.boldFont: xft:Monospace:Bold:size=9
-URxvt.font: xft:DejaVu Sans Mono:size=10.5
-URxvt.boldFont: xft:DejaVu Sans Mono:Bold:size=10.5
-URxvt.letterSpace: -2
+
+URxvt.font: xft:iosevka-term:size=10.5
+URxvt.boldFont: xft:iosevka-term:Bold:size=10.5
+URxvt.letterSpace: -1
+
+! fix for invisible underscore at certain fontsizes:
+URxvt.lineSpace: 1
+
+URxvt.internalBorder:  12
+
 ! Add fallback fonts as laid out in `man 1 urxvt` under "font:" in the RESOURCES section
 
 ! Window size and position
@@ -51,7 +56,7 @@ URxvt.letterSpace: -2
 URxvt.geometry: 80x28
 
 URxvt.scrollstyle: plain
-URxvt.scrollBar: true
+URxvt.scrollBar: false
 URxvt.scrollBar_right: true
 URxvt.iconFile: /usr/share/icons/Faenza-Bunsen-common/apps/48/utilities-terminal.png
 
@@ -77,52 +82,73 @@ URxvt.iso14755: False
 URxvt.perl-ext-common: default,clipboard
 
 !transparency
-URxvt.transparent: true
-URxvt*shading: 15
+URxvt.transparent: false
+URxvt*shading: 30
 
-! special
-*.foreground:   #ffffff
-*.background:   #000000
-*.cursorColor:  #cc00ff
-
-! black
-*.color0:       #1c1c1c
-*.color8:       #00d7ff
-
-! red
-*.color1:       #ff00ff
-*.color9:       #d700ff
-
-! green
-*.color2:       #00afaf
-*.color10:      #00afd7
-
-! yellow
-*.color3:       #0087af
-*.color11:      #5f5fff
-
-! blue
-*.color4:       #5f5faf
-*.color12:      #ff5fff
-
-! magenta
-*.color5:       #d75fff
-*.color13:      #00d7ff
-
-! cyan
-*.color6:       #00afff
-*.color14:      #00ffff
-
-! white
-*.color7:       #808080
-*.color15:      #ccffff
+! Custom colourscheme, see http://terminal.sexy/ for more ideas.
+!
+! Generated with :
+! XRDB2Xreources.py
+!
+*.foreground:  #e5e5e5
+*.background:  #0d1010
+*.cursorColor: #ffea2e
+!
+! Black
+*.color0:      #212121
+*.color8:      #424242
+!
+! Red
+*.color1:      #b7141f
+*.color9:      #e83b3f
+!
+! Green
+*.color2:      #457b24
+*.color10:     #7aba3a
+!
+! Yellow
+*.color3:      #f6981e
+*.color11:     #ffea2e
+!
+! Blue
+*.color4:      #f6981e
+*.color12:     #ffea2e
+!
+! Magenta
+*.color5:      #560088
+*.color13:     #aa4dbc
+!
+! Cyan
+*.color6:      #0e717c
+*.color14:     #26bbd1
+!
+! White
+*.color7:      #efefef
+*.color15:     #d9d9d9
+!
+! Bold, Italic, Underline
+*.colorBD:     #ffea2e
+!*.colorIT:
+!*.colorUL:
 
 ! ------------------------------------------------------------------------------
 ! ROFI Color theme
 ! ------------------------------------------------------------------------------
 rofi.color-enabled: true
-rofi.color-window: #000000, #000000, #00d7ff
-rofi.color-normal: #000000, #ffffff, #070707, #268bd2, #ffffff
-rofi.color-active: #000000, #268bd2, #070707, #268bd2, #205171
-rofi.color-urgent: #000000, #d700ff, #0c0c0c, #268bd2, #ffc39c
+
+!                  bg       border   separator
+rofi.color-window: #e5e5e5, #b7141f, #424242
+
+!                     bg       fg     bg-alt   hl-bg    hl-fg
+rofi.color-normal: #d9d9d9, #0d1010, #efefef, #b7141f, #e5e5e5
+
+rofi.color-active: #000000, #268bd2, #070707, #e83b3f, #205171
+rofi.color-urgent: #000000, #d700ff, #0c0c0c, #e83b3f, #ffc39c
+
 rofi.hide-scrollbar: true
+rofi.width: 500
+rofi.lines: 8
+
+rofi.bw: 4
+rofi.font: Noto Sans Regular 13
+

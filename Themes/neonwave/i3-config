@@ -61,7 +61,7 @@ bindsym $mod+h split h
 bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
-bindsym $mod+Shift+f fullscreen toggle
+bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -223,7 +223,7 @@ bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # lock
 bindsym $mod+l exec lock
 
-bindsym $mod+f exec thunar
+bindsym $mod+t exec thunar
 
 ################################################################################
 ################## autostart  ##################################################
@@ -237,3 +237,8 @@ exec --no-startup-id volumeicon
 exec --no-startup-id ~/.fehbg
 exec --no-startup-id xsettingsd
 exec --no-startup-id ~/bin/init_workspace.sh
+
+exec --no-startup-id xset s off
+exec --no-startup-id xset -dpms
+exec --no-startup-id xset s noblank
+exec --no-startup-id xset r rate 200 20
