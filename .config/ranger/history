@@ -12,9 +12,7 @@ wallpaper
 cd nginx
 touch passwords
 touch passwords.txt
-open_with nano
 cd .local
-cd TERA
 cd minimal
 cd modprobe.d
 touch wi-fi-keeps-failing.sh
@@ -25,5 +23,10 @@ touch userContent.css
 cd Themes
 cd .config/ranger
 open_with 
-delete
 open_with micro
+open_with nano
+cd TERA
+open_with gdebi
+cd .local/share/profanity/
+delete
+cd .cache
