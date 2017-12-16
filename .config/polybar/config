@@ -218,29 +218,6 @@ bar-progress-empty = 
 label-song-maxlen = 0
 label-song-ellipsis = false
 
-
-[module/xbacklight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = BL
-
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #ff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
-
 [module/cpu]
 type = internal/cpu
 interval = 2
@@ -346,7 +323,7 @@ type = internal/volume
 ;mapped = true
 
 format-volume = <label-volume> <bar-volume> 
-format-volume-background = #102735
+format-volume-background = ${colors.background}
 format-volume-prefix = " "
 ;format-volume-prefix-foreground = foreground
 format-volume-suffix = "  "
