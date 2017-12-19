@@ -85,47 +85,45 @@ URxvt.perl-ext-common: default,clipboard
 URxvt.transparent: false
 URxvt*shading: 30
 
-! Custom colourscheme, see http://terminal.sexy/ for more ideas.
-!
 ! Generated with :
-! XRDB2Xreources.py
+! XRDB2Xreources.py, and then terminal.sexy
 !
-*.foreground:  #e5e5e5
-*.background:  #0d1010
-*.cursorColor: #ffea2e
-!
-! Black
-*.color0:      #212121
-*.color8:      #424242
-!
-! Red
-*.color1:      #b7141f
-*.color9:      #e83b3f
-!
-! Green
-*.color2:      #457b24
-*.color10:     #7aba3a
-!
-! Yellow
-*.color3:      #f6981e
-*.color11:     #ffea2e
-!
-! Blue
-*.color4:      #f6981e
-*.color12:     #ffea2e
-!
-! Magenta
-*.color5:      #560088
-*.color13:     #aa4dbc
-!
-! Cyan
-*.color6:      #0e717c
-*.color14:     #26bbd1
-!
-! White
-*.color7:      #efefef
-*.color15:     #d9d9d9
-!
+*.foreground:   #e5e5e5
+*.background:   #0d1010
+*.cursorColor:  #ffea2e
+
+! black
+*.color0:       #212121
+*.color8:       #424242
+
+! red
+*.color1:       #d61d29
+*.color9:       #e83b3f
+
+! green
+*.color2:       #457b24
+*.color10:      #7aba3a
+
+! yellow
+*.color3:       #f6981e
+*.color11:      #ffea2e
+
+! blue
+*.color4:       #c97c18
+*.color12:      #ffea2e
+
+! magenta
+*.color5:       #921ed4
+*.color13:      #aa4dbc
+
+! cyan
+*.color6:       #0e717c
+*.color14:      #26bbd1
+
+! white
+*.color7:       #efefef
+*.color15:      #d9d9d9
+
 ! Bold, Italic, Underline
 *.colorBD:     #ffea2e
 !*.colorIT:
