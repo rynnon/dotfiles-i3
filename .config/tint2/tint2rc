@@ -57,7 +57,7 @@ background_color = #888888 20
 border_color = #888888 20
 
 # Panel
-panel_monitor = all
+panel_monitor = DP-1
 panel_position = top center horizontal
 panel_items = LTSC
 panel_size = 100% 30
