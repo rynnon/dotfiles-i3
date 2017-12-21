@@ -11,16 +11,16 @@
 ; http://fontawesome.io/cheatsheet/
 
 [colors]
-background = ${xrdb:background:#229933}
+background = ${xrdb:background:#eeeeee}
 ;background = #229933
 ;background = #000000
 background-alt = #444
-foreground = ${xrdb:color15:#fff}
+foreground = ${xrdb:color0:#000000}
 ;foreground = #dfdfdf
-foreground-alt = #ffea2e
-primary = #ffb52a
+foreground-alt = #3971ed
+primary = #000000
 secondary = #e60053
-alert = #e83b3f
+alert = #cc342b
 
 [bar/bottom]
 bottom = true

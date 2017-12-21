@@ -85,12 +85,24 @@ then
     echo '  [-] Failed to apply terminal theme'
   fi
 
-  # if cp ../$THEME/.config/polybar/config ~/.config/polybar/config
-  # then
-  #   echo '  [+] .config/polybar/config configuration file set up successfully'
-  # else
-  #   echo '  [-] Failed to apply ./config/polybar/config configuration file'
-  # fi
+  if [ "$THEME_DIR/$THEME/bashrc" ]
+  then
+    if cp $THEME_DIR/$THEME/bashrc ~/.bashrc
+    then
+      echo '  [+] bashrc set up successfully'
+    else
+      echo '  [-] Failed to apply bashrc'
+    fi
+  else
+    echo '  [-] This theme does not have a bashrc included'
+  fi
+
+  if cp $THEME_DIR/$THEME/polybar-config ~/.config/polybar/config
+  then
+    echo '  [+] .config/polybar/config configuration file set up successfully'
+  else
+    echo '  [-] Failed to apply ./config/polybar/config configuration file'
+  fi
 
 
   # if cp ../scripts/polybar/launch.sh ~/.config/polybar/launch.sh
@@ -205,8 +217,6 @@ then
   else
     echo '  [-] This theme does not have a startpage included'
   fi
-
-
 
 
   # Finally we restart i3wm

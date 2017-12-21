@@ -16,6 +16,7 @@ cd .local
 cd minimal
 cd modprobe.d
 touch wi-fi-keeps-failing.sh
+
 mkdir crosscode
 touch userChrome.css
 touch userContent.css
@@ -23,14 +24,11 @@ cd Themes
 cd .config/ranger
 open_with 
 open_with micro
+cd TERA
 open_with gdebi
 cd .local/share/profanity/
 cd .cache
 cd TERA/synchroner ordner netbook
-delete
 touch resolv.conf
 open_with nano
-cd ranger
-mkdir .ranger
-cd TERA
-
+delete
