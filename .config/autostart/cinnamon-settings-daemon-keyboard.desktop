@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Cinnamon Settings Daemon - keyboard
+Exec=/usr/lib/x86_64-linux-gnu/cinnamon-settings-daemon/csd-keyboard
+OnlyShowIn=X-Cinnamon;
+NoDisplay=true
+X-GNOME-Autostart-Phase=Initialization
+X-GNOME-Autostart-Notify=true
+X-GNOME-AutoRestart=true
+Hidden=true
