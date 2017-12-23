@@ -1,16 +1,23 @@
 #!/bin/bash
 # created for installing i3-gaps in Linux Mint 18 / Ubuntu 16.04
 
-#------ setup ------------------------------------------------------------------
+# to do:
+# 	- mpd setup
+#
 
+#------ setup ------------------------------------------------------------------
 export DEBIAN_FRONTEND=noninteractive
 sudo apt-get update -q
-sudo apt-get upgrade -q -y
+#sudo apt-get upgrade -q -y
 
 #------ general purpose CLI apps -----------------------------------------------
 # some of these need to be installed before starting this script ..
 sudo apt-get install -q -y \
-htop nano ranger git openssh-server curl screen
+ htop nano ranger git openssh-server curl screen
+
+# ----- general purpose packages for a graphical desktop -----------------------
+sudo apt-get install -q -y \
+ xserver-xorg-hwe-16.04 pulseaudio
 
 #----- install i3-gaps from source ---------------------------------------------
 
@@ -81,7 +88,7 @@ sudo apt-get update -q -y
 sudo apt-get -q -y  -o Dpkg::Options::="--force-confdef" \
                     -o Dpkg::Options::="--force-confold" \
 					install \
- polybar neofetch xsettingsd feh mlocate rxvt-unicode ranger w3m-img mpd ncmpcpp xclip tty-clock tmux
+ polybar rofi neofetch xsettingsd feh mlocate rxvt-unicode ranger w3m-img mpd ncmpcpp xclip tty-clock tmux
 
 # # uxrvt: scripts and configs for sensible copy+paste (first one might be unnecessary)
 # #- https://gist.github.com/xkr47/98224ed6b0860cb55ec0
@@ -94,6 +101,13 @@ sudo apt-get -q -y  -o Dpkg::Options::="--force-confdef" \
 # cp rice/stuff/clipboard /usr/lib/urxvt/perl/clipboard
 # cp rice/stuff/xkr-clipboard.pl /usr/lib/urxvt/perl/xkr-clipboard.pl
 
+# ------ micro editor ----------------------------------------------------------
+cd Downloads
+wget https://github.com/zyedidia/micro/releases/download/v1.3.4/micro-1.3.4-linux64.tar.gz
+tar -xvzf micro-1.3.4-linux64.tar.gz
+sudo cp micro-1.3.4/micro /usr/bin/micro
+rm micro-1.3.4-linux64.tar.gz
+cd
 # ------ fonts, themes ---------------------------------------------------------
 
 sudo add-apt-repository -y ppa:noobslab/themes
@@ -103,10 +117,10 @@ sudo apt-add-repository -y ppa:tista/adapta
 sudo apt update
 
 sudo apt-get -y install \
-arc-theme arc-icons ultra-flat-icons-orange adapta-gtk-theme numix-icon-theme-circle
+ arc-theme arc-icons ultra-flat-icons-orange adapta-gtk-theme numix-icon-theme-circle
 
 sudo apt-get -y install \
-fonts-dejavu fonts-noto-cjk fonts-noto-mono fonts-hack
+ fonts-dejavu fonts-noto-cjk fonts-noto-mono fonts-font-awesome fonts-hack-ttf
 
 # ------ copy stuff from git repo ----------------------------------------------
 
@@ -118,6 +132,8 @@ cd dotfiles-i3/rice-assets
 sudo cp clipboard /usr/lib/urxvt/perl/clipboard
 sudo cp xkr-clipboard.pl /usr/lib/urxvt/perl/xkr-clipboard.pl
 cp -r fonts $HOME/.fonts
+# reload font cache
+fc-cache -fv
 cp -r icons $HOME/.icons
 cd ..
 cp -r Themes $HOME/Themes
@@ -126,11 +142,11 @@ chmod +x $HOME/bin/*
 cd $HOME/.config
 mkdir tint2 ranger polybar micro i3 htop
 cd $HOME/dotfiles-i3/.config
-cp -r tint2/tint2rc $HOME/.config/tint2/tint2rc
-cp -r ranger/rifle.conf $HOME/.config/ranger/rifle.conf
-cp -r polybar/launsh.sh $HOME/.config/polybar/launsh.sh
-cp -r micro/settings.json $HOME/.config/micro/settings.json
-cp -r htop/htoprc $HOME/.config/htop/htoprc
+cp -r tint2/tint2rc 		$HOME/.config/tint2/tint2rc
+cp -r ranger/rifle.conf 	$HOME/.config/ranger/rifle.conf
+cp -r polybar/launsh.sh 	$HOME/.config/polybar/launsh.sh
+cp -r micro/settings.json 	$HOME/.config/micro/settings.json
+cp -r htop/htoprc 			$HOME/.config/htop/htoprc
 
 #cd
 #apply_theme utilitarix-gaps-dark
@@ -140,7 +156,8 @@ Script finished successfully.
 
 You can now log into the i3 session and run 'apply_theme utilitarix-gaps-dark'.
 
-Maybe, edit polybar's display in ~/Themes/utilitarix-gaps-dark/polybar-config first.
+Maybe, edit ~/Themes/utilitarix-gaps-dark/polybar-config to account for your system's particulars first.
+Also, edit ~/Themes/utilitarix-gaps-dark/i3-config to add your file manager.
 
 Good luck!
 
