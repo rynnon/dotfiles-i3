@@ -1,3 +1,11 @@
-Net/ThemeName "Adapta-Nokto"
-Net/IconThemeName "Ultra-Flat-Orange-Bright"
-Gtk/FontName "Noto Sans Regular 10"
+Net/ThemeName		"Adapta-Nokto"
+Net/IconThemeName	"Ultra-Flat-Orange-Bright"
+
+Gtk/FontName 	"Noto Sans Regular 10"
+Xft/Hinting 	1
+Xft/RGBA 		"rgb"
+Xft/HintStyle 	"hintfull"
+Xft/Antialias 	1
+Xft/lcdfilter 	"lcddefault"
+
+Xft/DPI 98304

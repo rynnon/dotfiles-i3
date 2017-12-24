@@ -151,7 +151,7 @@ client.focused          #d9d9d9 #e5e5e5 #000000 #e5e5e5 #e5e5e5
 
 # Set inner/outer gaps
 gaps inner 0
-gaps outer 5
+gaps outer 0
 
 # Gaps mode
 set $mode_gaps Gaps: (o) outer, (i) inner
@@ -220,8 +220,8 @@ bindsym $mod+t exec pcmanfm
 ################################################################################
 
 exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
-exec tint2
-exec --no-startup-id nm-applet
+exec --no-startup-id tint2
+exec --no-startup-id nm-applet &
 exec --no-startup-id pulseaudio &
 exec --no-startup-id volumeicon
 exec --no-startup-id ~/.fehbg
@@ -233,4 +233,5 @@ exec --no-startup-id polybar bottom &
 exec --no-startup-id xset s off
 exec --no-startup-id xset -dpms
 exec --no-startup-id xset s noblank
+# xset seems to be ignored
 exec --no-startup-id xset r rate 200 20

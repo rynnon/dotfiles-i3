@@ -1,47 +1,20 @@
 ! font settings --------------------------------------------------------------
 
-Xft.autohint: true
-Xft.antialias: true
-Xft.hinting: true
-Xft.hintstyle: hintslight
+!Xft.autohint: false
+!Xft.antialias: true
+!Xft.hinting: true
+!Xft.hintstyle: hintslight
 !Xft.dpi: 96
-Xft.rgba: rgb
-Xft.lcdfilter: lcddefault
+!Xft.rgba: rgb
+!Xft.lcdfilter: lcddefault
 
 ! xscreensaver ---------------------------------------------------------------
 
-!font settings
-xscreensaver.Dialog.headingFont:        -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.bodyFont:           -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.labelFont:          -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.unameFont:          -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.buttonFont:         -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.dateFont:           -*-fixed-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.passwd.passwdFont:         -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-!general dialog box (affects main hostname, username, password text)
-xscreensaver.Dialog.foreground:         #101010
-xscreensaver.Dialog.background:         #D8D8D8
-xscreensaver.Dialog.topShadowColor:     #D8D8D8
-xscreensaver.Dialog.bottomShadowColor:  #D8D8D8
-xscreensaver.Dialog.Button.foreground:  #101010
-xscreensaver.Dialog.Button.background:  #E5E5E5
-!username/password input box and date text colour
-xscreensaver.Dialog.text.foreground:    #101010
-xscreensaver.Dialog.text.background:    #E5E5E5
-xscreensaver.Dialog.internalBorderWidth:24
-xscreensaver.Dialog.borderWidth:        0
-xscreensaver.Dialog.shadowThickness:    2
-!timeout bar (background is actually determined by Dialog.text.background)
-xscreensaver.passwd.thermometer.foreground:  #101010
-xscreensaver.passwd.thermometer.background:  #2E2E2E
-xscreensaver.passwd.thermometer.width:       8
-
-! urxvt -------------------------------------------
-
+! urxvt ----------------------------------------------------------------------
 
 URxvt.font: xft:iosevka-term:size=10.5
 URxvt.boldFont: xft:iosevka-term:Bold:size=10.5
-URxvt.letterSpace: -1
+URxvt.letterSpace: 0
 
 ! fix for invisible underscore at certain fontsizes:
 URxvt.lineSpace: 1
@@ -88,8 +61,11 @@ URxvt*shading: 30
 ! Generated with :
 ! XRDB2Xreources.py, and then terminal.sexy
 !
+! set background to #0d1010 if your display reflects light (glare finish/bright rooms).
+!
 *.foreground:   #e5e5e5
-*.background:   #0d1010
+#*.background:   #0d1010
+*.background:	#000000
 *.cursorColor:  #ffea2e
 
 ! black
@@ -135,10 +111,10 @@ URxvt*shading: 30
 rofi.color-enabled: true
 
 !                  bg       border   separator
-rofi.color-window: #e5e5e5, #b7141f, #424242
+rofi.color-window: #e5e5e5, #d61d29, #424242
 
 !                     bg       fg     bg-alt   hl-bg    hl-fg
-rofi.color-normal: #d9d9d9, #0d1010, #efefef, #b7141f, #e5e5e5
+rofi.color-normal: #d9d9d9, #0d1010, #efefef, #d61d29, #e5e5e5
 
 rofi.color-active: #000000, #268bd2, #070707, #e83b3f, #205171
 rofi.color-urgent: #000000, #d700ff, #0c0c0c, #e83b3f, #ffc39c
