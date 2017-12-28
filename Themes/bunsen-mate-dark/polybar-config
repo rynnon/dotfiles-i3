@@ -24,9 +24,10 @@ alert = #e83b3f
 
 [bar/bottom]
 bottom = true
+;top = true
 #monitor = ${env:MONITOR:DP-1}
 width = 100%
-height = 24
+height = 30
 ;offset-x = 0
 ;offset-y = 0
 radius = 0
@@ -55,9 +56,9 @@ modules-left = i3 cpu memory wlan eth temperature
 modules-center = 
 modules-right = mpd mpd2 volume date
 
-;tray-position = right
-;tray-padding = 2
-;tray-transparent = true
+tray-position = right
+tray-padding = 0
+;-transparent = true
 ;tray-background = #0063ff
 
 ;scroll-up = i3wm-wsnext
@@ -315,7 +316,7 @@ format-prefix = "|  "
 time = %H:%M 
 time-alt = ""
 3
-format-suffix = " Uhr  "
+format-suffix = " Uhr  | "
 format-suffic-alt = " "
 format-prefix-foreground = ${colors.foreground}
 format-underline = #0a6cf5
