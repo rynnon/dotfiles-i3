@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="48"
+   height="48"
+   id="svg3048"
+   version="1.1"
+   inkscape:version="0.48+devel r12012"
+   sodipodi:docname="indicator-messages-new.svg">
+  <defs
+     id="defs3050" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="12.274609"
+     inkscape:cx="-17.007276"
+     inkscape:cy="20.055263"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="718"
+     inkscape:window-x="0"
+     inkscape:window-y="28"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <metadata
+     id="metadata3053">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-1004.3622)">
+    <rect
+       style="fill:none;stroke:none"
+       id="rect3187"
+       width="48"
+       height="48"
+       x="0"
+       y="1004.3622" />
+    <path
+       style="color:#000000;fill:#ff0075;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.39999998;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 23.984375,1012.3622 c -8.808294,0 -15.9375,5.6431 -15.9375,12.6224 0,6.8283 6.830552,12.3848 15.375,12.6224 1.467777,3.4793 4.546857,6.0533 8.3125,6.7552 -2.203691,-1.8313 -2.194159,-4.4993 -2.15625,-7.5163 6.05163,-1.7944 10.375,-6.4401 10.375,-11.8613 C 39.953125,1018.0053 32.792669,1012.3622 23.984375,1012.3622 Z"
+       id="path832"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
