@@ -200,7 +200,7 @@ bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+l exec lock
 
 # file manager
-bindsym $mod+t exec caja --no-desktop ''
+bindsym $mod+t exec thunar
 
 ################################################################################
 ################## autostart  ##################################################
