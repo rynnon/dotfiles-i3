@@ -135,7 +135,7 @@ bindsym $mod+r mode "resize"
 for_window [class="^.*"] border pixel 5
 
 # Smart Borders
-#smart_borders on
+smart_borders on
 
 # Some color adjustments
 # class                 border  backgr. text    indicator child_border
