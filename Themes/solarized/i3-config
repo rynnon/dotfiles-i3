@@ -139,12 +139,12 @@ for_window [class="^.*"] border pixel 5
 
 # Some color adjustments
 # class                 border  backgr. text    indicator child_border
-client.focused_inactive #0d1010 #212121 #d9d9d9 #0d1010 #0d1010
-client.unfocused        #0d1010 #212121 #d9d9d9 #424242 #0d1010
-client.focused          #d9d9d9 #e5e5e5 #000000 #e5e5e5 #e5e5e5
+client.focused_inactive #000d10 #000d10 #acc2c4 #000d10 #000d10
+client.unfocused        #000d10 #000d10 #acc2c4 #424242 #000d10
+client.focused          #acc2c4 #acc2c4 #000000 #acc2c4 #acc2c4
 
 # Smart Gaps
-#smart_gaps on
+smart_gaps on
 
 # Set inner/outer gaps
 gaps inner 40

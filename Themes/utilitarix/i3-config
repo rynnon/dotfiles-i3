@@ -127,20 +127,26 @@ bindsym $mod+r mode "resize"
 ################## gaps-specific configs #######################################
 ################################################################################
 
+# on: draw borders around a container only if it is not the only container in this workspace
+# only way to deactivate is to comment it out
+#smart_borders on
+
+# Hiding borders adjacent to the screen edges
+# hide_edge_borders none|vertical|horizontal|both|smart
+# default: none
+hide_edge_borders both
+
 # Necessary for i3-gaps to work properly (pixel can be any value)
-for_window [class="^.*"] border pixel 3
-
-# Smart Gaps
-smart_gaps on
-
-# Smart Borders
-smart_borders on
+for_window [class="^.*"] border pixel 4
 
 # Some color adjustments
 # class                 border  backgr. text    indicator child_border
-client.focused_inactive #0d1010 #212121 #d9d9d9 #424242 #212121
-client.unfocused        #0d1010 #212121 #d9d9d9 #424242 #212121
+client.focused_inactive #0d1010 #212121 #d9d9d9 #424242 #0d1010
+client.unfocused        #0d1010 #212121 #d9d9d9 #424242 #0d1010
 client.focused          #d9d9d9 #e5e5e5 #000000 #e5e5e5 #e5e5e5
+
+# Smart Gaps
+smart_gaps on
 
 # Set inner/outer gaps
 gaps inner 0
@@ -206,21 +212,22 @@ bindsym $mod+Shift+x exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+l exec lock
 
 # file manager
-bindsym $mod+t exec pcmanfm
+bindsym $mod+t exec thunar
 
 ################################################################################
 ################## autostart  ##################################################
 ################################################################################
 
 exec /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id tint2
+#exec --no-startup-id tint2
 exec --no-startup-id nm-applet &
 exec --no-startup-id pulseaudio &
-exec --no-startup-id volumeicon
+#exec --no-startup-id volumeicon
 exec --no-startup-id ~/.fehbg
 exec --no-startup-id xsettingsd
 exec --no-startup-id mpd ~/.mpd/mpd.conf
 exec --no-startup-id killall polybar
+exec sleep 0.5
 exec --no-startup-id polybar bottom &
 
 exec --no-startup-id xset s off

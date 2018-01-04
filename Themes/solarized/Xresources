@@ -71,8 +71,8 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.iso14755: False
 URxvt.perl-ext-common: default,clipboard
 
-URxvt.font: xft:iosevka-term:size=10.5
-URxvt.boldFont: xft:iosevka-term:Bold:size=10.5
+URxvt.font: xft:Iosevka Term:Regular:size=10.5
+URxvt.boldFont: xft:Iosevka Term:Bold:size=10.5
 URxvt.letterSpace: -1
 
 ! fix for invisible underscore at certain fontsizes:
@@ -84,49 +84,49 @@ URxvt.internalBorder:  12
 URxvt.transparent: false
 URxvt*shading: 30
 
-! Generated with :
-! XRDB2Xreources.py, and then terminal.sexy
+! source:
+! https://github.com/altercation/solarized/blob/master/xresources/solarized 
+! and then modified with terminal.sexy
+! also see here: https://github.com/Madkita/Dotfiles/blob/master/agnoster.zsh-theme
 !
-*.foreground:   #e5e5e5
-*.background:   #0d1010
-*.cursorColor:  #ffea2e
+
+! special
+*.foreground:   #acc2c4
+*.background:   #000d10
+*.cursorColor:  #839496
 
 ! black
-*.color0:       #212121
-*.color8:       #424242
+*.color0:       #073642
+*.color8:       #002b36
 
 ! red
-*.color1:       #d61d29
-*.color9:       #e83b3f
+*.color1:       #dc322f
+*.color9:       #cb4b16
 
 ! green
-*.color2:       #457b24
-*.color10:      #7aba3a
+*.color2:       #859900
+*.color10:      #586e75
 
 ! yellow
-*.color3:       #f6981e
-*.color11:      #ffea2e
+*.color3:       #b58900
+*.color11:      #657b83
 
 ! blue
-*.color4:       #c97c18
-*.color12:      #ffea2e
+*.color4:       #268bd2
+*.color12:      #839496
 
 ! magenta
-*.color5:       #921ed4
-*.color13:      #aa4dbc
+*.color5:       #d33682
+*.color13:      #6c71c4
 
 ! cyan
-*.color6:       #0e717c
-*.color14:      #26bbd1
+*.color6:       #2aa198
+*.color14:      #93a1a1
 
 ! white
-*.color7:       #efefef
-*.color15:      #d9d9d9
+*.color7:       #eee8d5
+*.color15:      #fdf6e3
 
-! Bold, Italic, Underline
-*.colorBD:     #ffea2e
-!*.colorIT:
-!*.colorUL:
 
 ! ------------------------------------------------------------------------------
 ! ROFI Color theme
