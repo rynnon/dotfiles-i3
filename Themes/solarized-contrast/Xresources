@@ -38,6 +38,16 @@ xscreensaver.passwd.thermometer.width:       8
 
 ! urxvt -------------------------------------------
 
+
+URxvt.font: xft:Ubuntu Mono:Regular:size=11
+URxvt.boldFont: xft:Ubuntu Mono:Bold:size=11
+URxvt.letterSpace: -1
+
+! fix for invisible underscore at certain fontsizes:
+URxvt.lineSpace: 1
+
+URxvt.internalBorder: 8
+
 ! Add fallback fonts as laid out in `man 1 urxvt` under "font:" in the RESOURCES section
 
 ! Window size and position
@@ -71,73 +81,55 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.iso14755: False
 URxvt.perl-ext-common: default,clipboard
 
-!URxvt.font: xft:Iosevka Term:Regular:size=10.5
-!URxvt.boldFont: xft:Iosevka Term:Bold:size=10.5
-!URxvt.letterSpace: -1
-
-URxvt.font: xft:Ubuntu Mono:Regular:size=12
-URxvt.boldFont: xft:Ubuntu Mono:Bold:size=12
-URxvt.letterSpace: -1
-
-
-! fix for invisible underscore at certain fontsizes:
-URxvt.lineSpace: 1
-
-URxvt.internalBorder:  12
-
-!transparency
+!'fake' transparency
 URxvt.transparent: false
-URxvt*shading: 30
+URxvt*shading: 67
 
-! source:
-! https://github.com/altercation/solarized/blob/master/xresources/solarized 
-! and then modified with terminal.sexy
-! also see here: https://github.com/Madkita/Dotfiles/blob/master/agnoster.zsh-theme
+! Generated with :
+! XRDB2Xreources.py, and then terminal.sexy
 !
-
-! special
-*.foreground:   #acc2c4
-!*.background:   #000d10
-!*.background:	#063441
-!*.background:	#052b35
-!*.background:	#041e2a
-*.background:	#052331
-*.cursorColor:  #839496
+*.foreground:   #e5e5e5
+!*.background:   #0d1010
+!*.background:   #052331
+*.background:   #063441
+*.cursorColor:  #ffea2e
 
 ! black
-*.color0:       #073642
-*.color8:       #002b36
+*.color0:       #212121
+*.color8:       #424242
 
 ! red
-*.color1:       #dc322f
-*.color9:       #cb4b16
+*.color1:       #d61d29
+*.color9:       #e83b3f
 
 ! green
-*.color2:       #859900
-*.color10:      #586e75
+*.color2:       #457b24
+*.color10:      #7aba3a
 
 ! yellow
-*.color3:       #b58900
-*.color11:      #657b83
+*.color3:       #f6981e
+*.color11:      #ffea2e
 
 ! blue
-*.color4:       #268bd2
-*.color12:      #839496
+*.color4:       #c97c18
+*.color12:      #ffea2e
 
 ! magenta
-*.color5:       #d33682
-*.color13:      #6c71c4
+*.color5:       #921ed4
+*.color13:      #aa4dbc
 
 ! cyan
-*.color6:       #2aa198
-*.color14:      #93a1a1
+*.color6:       #0e717c
+*.color14:      #26bbd1
 
 ! white
-*.color7:       #eee8d5
-*.color15:      #fdf6e3
+*.color7:       #efefef
+*.color15: #d9d9d9
 
-!*.colorBD:      #2aa198
-*.colorBD:      #b58900
+! Bold, Italic, Underline
+*.colorBD:     #f6981e
+!*.colorIT:
+!*.colorUL:
 
 ! ------------------------------------------------------------------------------
 ! ROFI Color theme

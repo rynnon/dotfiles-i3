@@ -38,6 +38,16 @@ xscreensaver.passwd.thermometer.width:       8
 
 ! urxvt -------------------------------------------
 
+
+URxvt.font: xft:iosevka-term:size=10.5
+URxvt.boldFont: xft:iosevka-term:Bold:size=10.5
+URxvt.letterSpace: -1
+
+! fix for invisible underscore at certain fontsizes:
+URxvt.lineSpace: 1
+
+URxvt.internalBorder:  12
+
 ! Add fallback fonts as laid out in `man 1 urxvt` under "font:" in the RESOURCES section
 
 ! Window size and position
@@ -71,75 +81,48 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.iso14755: False
 URxvt.perl-ext-common: default,clipboard
 
-!URxvt.font: xft:Iosevka Term:Regular:size=10.5
-!URxvt.boldFont: xft:Iosevka Term:Bold:size=10.5
-!URxvt.letterSpace: -1
-
-URxvt.font: xft:Ubuntu Mono:Regular:size=12
-URxvt.boldFont: xft:Ubuntu Mono:Bold:size=12
-URxvt.letterSpace: -1
-
-
-! fix for invisible underscore at certain fontsizes:
-URxvt.lineSpace: 1
-
-URxvt.internalBorder:  12
-
 !transparency
-URxvt.transparent: false
-URxvt*shading: 30
-
-! source:
-! https://github.com/altercation/solarized/blob/master/xresources/solarized 
-! and then modified with terminal.sexy
-! also see here: https://github.com/Madkita/Dotfiles/blob/master/agnoster.zsh-theme
-!
+URxvt.transparent: true
+URxvt*shading: 80
 
 ! special
-*.foreground:   #acc2c4
-!*.background:   #000d10
-!*.background:	#063441
-!*.background:	#052b35
-!*.background:	#041e2a
-*.background:	#052331
-*.cursorColor:  #839496
+*.foreground:   #000000
+*.background:   #e6e6e6
+*.cursorColor:  #433b32
 
 ! black
-*.color0:       #073642
-*.color8:       #002b36
+*.color0:       #16130f
+*.color8:       #5a5047
 
 ! red
-*.color1:       #dc322f
-*.color9:       #cb4b16
+*.color1:       #826d57
+*.color9:       #826d57
 
 ! green
-*.color2:       #859900
-*.color10:      #586e75
+*.color2:       #57826d
+*.color10:      #57826d
 
 ! yellow
-*.color3:       #b58900
-*.color11:      #657b83
+*.color3:       #6d8257
+*.color11:      #6d8257
 
 ! blue
-*.color4:       #268bd2
-*.color12:      #839496
+*.color4:       #6d5782
+*.color12:      #6d5782
 
 ! magenta
-*.color5:       #d33682
-*.color13:      #6c71c4
+*.color5:       #82576d
+*.color13:      #82576d
 
 ! cyan
-*.color6:       #2aa198
-*.color14:      #93a1a1
+*.color6:       #576d82
+*.color14:      #576d82
 
 ! white
-*.color7:       #eee8d5
-*.color15:      #fdf6e3
+*.color7:       #a39a90
+*.color15:      #dbd6d1
 
-!*.colorBD:      #2aa198
-*.colorBD:      #b58900
 
-! ------------------------------------------------------------------------------
 ! ROFI Color theme
 ! ------------------------------------------------------------------------------
 rofi.color-enabled: true
