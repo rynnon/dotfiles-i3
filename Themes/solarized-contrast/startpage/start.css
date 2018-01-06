@@ -7,7 +7,7 @@ ul {
 pre, code { font-family: Hack, monospace; }
 
 body {
- background: #1d1f21;
+ background: #063340;
   height: 100%;
   width: 100%;
 }
@@ -24,7 +24,7 @@ main {
 }
 
 h1 {
-  color: #707880;
+  color: #268bd2;
   display: block;
   margin: 0 auto;
   text-align: left;
@@ -45,7 +45,7 @@ ul {
 }
 
 li {
-  color: #707880;
+  color: #b58900;
   display: inline-block;
   font-size: 1.2em;
   line-height: 1.5;
