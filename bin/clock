@@ -1,2 +1,2 @@
 #!/bin/bash
-tty-clock -c -C 6
+tty-clock -c -C 3

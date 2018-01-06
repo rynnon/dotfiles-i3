@@ -1,4 +1,6 @@
-! font settings --------------------------------------------------------------
+! ------------------------------------------------------------------------------
+! font settings
+! ------------------------------------------------------------------------------
 
 Xft.autohint: true
 Xft.antialias: true
@@ -8,36 +10,10 @@ Xft.hintstyle: hintslight
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
-! xscreensaver ---------------------------------------------------------------
 
-!font settings
-xscreensaver.Dialog.headingFont:        -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.bodyFont:           -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.labelFont:          -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.unameFont:          -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.buttonFont:         -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.dateFont:           -*-fixed-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.passwd.passwdFont:         -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-!general dialog box (affects main hostname, username, password text)
-xscreensaver.Dialog.foreground:         #101010
-xscreensaver.Dialog.background:         #D8D8D8
-xscreensaver.Dialog.topShadowColor:     #D8D8D8
-xscreensaver.Dialog.bottomShadowColor:  #D8D8D8
-xscreensaver.Dialog.Button.foreground:  #101010
-xscreensaver.Dialog.Button.background:  #E5E5E5
-!username/password input box and date text colour
-xscreensaver.Dialog.text.foreground:    #101010
-xscreensaver.Dialog.text.background:    #E5E5E5
-xscreensaver.Dialog.internalBorderWidth:24
-xscreensaver.Dialog.borderWidth:        0
-xscreensaver.Dialog.shadowThickness:    2
-!timeout bar (background is actually determined by Dialog.text.background)
-xscreensaver.passwd.thermometer.foreground:  #101010
-xscreensaver.passwd.thermometer.background:  #2E2E2E
-xscreensaver.passwd.thermometer.width:       8
-
-! urxvt -------------------------------------------
-
+! ------------------------------------------------------------------------------
+! urxvt
+! ------------------------------------------------------------------------------
 
 URxvt.font: xft:Ubuntu Mono:Regular:size=11
 URxvt.boldFont: xft:Ubuntu Mono:Bold:size=11
@@ -49,6 +25,13 @@ URxvt.lineSpace: 1
 URxvt.internalBorder: 8
 
 ! Add fallback fonts as laid out in `man 1 urxvt` under "font:" in the RESOURCES section
+
+! True transparency, opacity percentage set in square brackets before URxvt.background colour
+URxvt.depth: 16
+
+!'fake' transparency
+URxvt.transparent: false
+URxvt*shading: 67
 
 ! Window size and position
 !URxvt*geometry: 60x22+50+100
@@ -62,9 +45,6 @@ URxvt.iconFile: /usr/share/icons/Faenza-Bunsen-common/apps/48/utilities-terminal
 
 ! scrollback buffer lines - 65535 is max (64 is default)
 URxvt.saveLines:16384
-
-! True transparency, opacity percentage set in square brackets before URxvt.background colour
-URxvt.depth: 16
 
 ! Clickble URLs
 URxvt.perl-ext-common: default,matcher
@@ -81,9 +61,25 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.iso14755: False
 URxvt.perl-ext-common: default,clipboard
 
-!'fake' transparency
-URxvt.transparent: false
-URxvt*shading: 67
+
+! ------------------------------------------------------------------------------
+! xterm
+! ------------------------------------------------------------------------------
+
+XTerm*faceName:Ubuntu Mono:Regular:size=11
+XTerm*internalBorder: 8
+XTerm*borderWidth: 0
+XTERM*termName: xterm
+XTerm*metaSendsEscape: true
+XTerm*selectToClipboard: true
+XTerm*VT100*translations: #override \n\
+    Ctrl Shift <Key>V:  insert-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>C:        select-end(CLIPBOARD) \n\
+
+
+! ------------------------------------------------------------------------------
+! colors
+! ------------------------------------------------------------------------------
 
 ! Generated with :
 ! XRDB2Xreources.py, and then terminal.sexy
@@ -130,6 +126,7 @@ URxvt*shading: 67
 *.colorBD:     #f6981e
 !*.colorIT:
 !*.colorUL:
+
 
 ! ------------------------------------------------------------------------------
 ! ROFI Color theme
