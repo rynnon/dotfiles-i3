@@ -1,4 +1,6 @@
-! font settings --------------------------------------------------------------
+! ------------------------------------------------------------------------------
+! font settings
+! ------------------------------------------------------------------------------
 
 Xft.autohint: true
 Xft.antialias: true
@@ -8,47 +10,28 @@ Xft.hintstyle: hintslight
 Xft.rgba: rgb
 Xft.lcdfilter: lcddefault
 
-! xscreensaver ---------------------------------------------------------------
 
-!font settings
-xscreensaver.Dialog.headingFont:        -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.bodyFont:           -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.labelFont:          -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.unameFont:          -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.buttonFont:         -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-xscreensaver.Dialog.dateFont:           -*-fixed-medium-r-*-*-12-*-*-*-*-*-*-*
-xscreensaver.passwd.passwdFont:         -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
-!general dialog box (affects main hostname, username, password text)
-xscreensaver.Dialog.foreground:         #101010
-xscreensaver.Dialog.background:         #D8D8D8
-xscreensaver.Dialog.topShadowColor:     #D8D8D8
-xscreensaver.Dialog.bottomShadowColor:  #D8D8D8
-xscreensaver.Dialog.Button.foreground:  #101010
-xscreensaver.Dialog.Button.background:  #E5E5E5
-!username/password input box and date text colour
-xscreensaver.Dialog.text.foreground:    #101010
-xscreensaver.Dialog.text.background:    #E5E5E5
-xscreensaver.Dialog.internalBorderWidth:24
-xscreensaver.Dialog.borderWidth:        0
-xscreensaver.Dialog.shadowThickness:    2
-!timeout bar (background is actually determined by Dialog.text.background)
-xscreensaver.passwd.thermometer.foreground:  #101010
-xscreensaver.passwd.thermometer.background:  #2E2E2E
-xscreensaver.passwd.thermometer.width:       8
+! ------------------------------------------------------------------------------
+! urxvt
+! ------------------------------------------------------------------------------
 
-! urxvt -------------------------------------------
-
-
-URxvt.font: xft:iosevka-term:size=10.5
-URxvt.boldFont: xft:iosevka-term:Bold:size=10.5
+URxvt.font: xft:Ubuntu Mono:Regular:size=11
+URxvt.boldFont: xft:Ubuntu Mono:Bold:size=11
 URxvt.letterSpace: -1
 
 ! fix for invisible underscore at certain fontsizes:
 URxvt.lineSpace: 1
 
-URxvt.internalBorder:  12
+URxvt.internalBorder: 8
 
 ! Add fallback fonts as laid out in `man 1 urxvt` under "font:" in the RESOURCES section
+
+! True transparency, opacity percentage set in square brackets before URxvt.background colour
+URxvt.depth: 16
+
+!'fake' transparency
+URxvt.transparent: false
+URxvt*shading: 67
 
 ! Window size and position
 !URxvt*geometry: 60x22+50+100
@@ -62,9 +45,6 @@ URxvt.iconFile: /usr/share/icons/Faenza-Bunsen-common/apps/48/utilities-terminal
 
 ! scrollback buffer lines - 65535 is max (64 is default)
 URxvt.saveLines:16384
-
-! True transparency, opacity percentage set in square brackets before URxvt.background colour
-URxvt.depth: 16
 
 ! Clickble URLs
 URxvt.perl-ext-common: default,matcher
@@ -81,60 +61,113 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.iso14755: False
 URxvt.perl-ext-common: default,clipboard
 
-!transparency
-URxvt.transparent: true
-URxvt*shading: 80
 
-! special
-*.foreground:   #000000
-*.background:   #e6e6e6
-*.cursorColor:  #433b32
+! ------------------------------------------------------------------------------
+! xterm
+! ------------------------------------------------------------------------------
+
+XTerm*faceName:Ubuntu Mono:Regular:size=11
+XTerm*internalBorder: 8
+XTerm*borderWidth: 0
+XTERM*termName: xterm
+XTerm*metaSendsEscape: true
+XTerm*selectToClipboard: true
+XTerm*VT100*translations: #override \n\
+    Ctrl Shift <Key>V:  insert-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>C:        select-end(CLIPBOARD) \n\
+
+! ------------------------------------------------------------------------------
+! uxterm
+! ------------------------------------------------------------------------------
+
+UXTerm*faceName:Ubuntu Mono:Regular:size=11
+UXTerm*internalBorder: 8
+UXTerm*borderWidth: 0
+UXTerm*termName: uxterm
+UXTerm*metaSendsEscape: true
+UXTerm*selectToClipboard: true
+UXTerm*VT100*translations: #override \n\
+    Ctrl Shift <Key>V:  insert-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>C:        select-end(CLIPBOARD) \n\
+
+! ------------------------------------------------------------------------------
+! colors
+! ------------------------------------------------------------------------------
+
+! Generated with :
+! XRDB2Xreources.py, and then terminal.sexy
+!
+*.foreground:   #e5e5e5
+!*.background:   #0d1010
+!*.background:   #052331
+*.background:   #063441
+*.cursorColor:  #ffea2e
 
 ! black
-*.color0:       #16130f
-*.color8:       #5a5047
+*.color0:       #212121
+*.color8:       #424242
 
 ! red
-*.color1:       #826d57
-*.color9:       #826d57
+*.color1:       #d61d29
+*.color9:       #e83b3f
 
 ! green
-*.color2:       #57826d
-*.color10:      #57826d
+*.color2:       #457b24
+*.color10:      #7aba3a
 
 ! yellow
-*.color3:       #6d8257
-*.color11:      #6d8257
+*.color3:       #f6981e
+*.color11:      #ffea2e
 
 ! blue
-*.color4:       #6d5782
-*.color12:      #6d5782
+*.color4:       #c97c18
+*.color12:      #ffea2e
 
 ! magenta
-*.color5:       #82576d
-*.color13:      #82576d
+*.color5:       #921ed4
+*.color13:      #aa4dbc
 
 ! cyan
-*.color6:       #576d82
-*.color14:      #576d82
+*.color6:       #0e717c
+*.color14:      #26bbd1
 
 ! white
-*.color7:       #a39a90
-*.color15:      #dbd6d1
+*.color7:       #efefef
+*.color15: #d9d9d9
 
+! Bold, Italic, Underline
+*.colorBD:     #f6981e
+!*.colorIT:
+!*.colorUL:
 
+#define bg          #063341
+#define fg          #e5e5e5
+#define black01     #0d1010
+#define black02     #212121
+#define white01     #d9d9d9
+#define white02     #efefef
+#define red01       #d61d29
+#define red02       #e83b3f
+#define green01     #457b24
+#define green02     #7aba3a
+#define yellow01    #f6981e
+#define yellow02    #ffea2e
+#define blue01      #c97c18
+#define blue02      #ffea2e
+
+! ------------------------------------------------------------------------------
 ! ROFI Color theme
 ! ------------------------------------------------------------------------------
 rofi.color-enabled: true
 
 !                  bg       border   separator
-rofi.color-window: #e5e5e5, #b7141f, #424242
+rofi.color-window: white01, blue01,   black02
 
-!                     bg       fg     bg-alt   hl-bg    hl-fg
-rofi.color-normal: #d9d9d9, #0d1010, #efefef, #b7141f, #e5e5e5
+!                  bg       fg       bg-alt   hl-bg    hl-fg
+rofi.color-normal: white01, black01, white02, blue01,  white02
 
-rofi.color-active: #000000, #268bd2, #070707, #e83b3f, #205171
-rofi.color-urgent: #000000, #d700ff, #0c0c0c, #e83b3f, #ffc39c
+!rofi.color-active: #000000, #268bd2, #070707, #e83b3f, #205171
+!rofi.color-urgent: #000000, #d700ff, #0c0c0c, #e83b3f, #ffc39c
 
 rofi.hide-scrollbar: true
 rofi.width: 500

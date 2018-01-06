@@ -76,6 +76,19 @@ XTerm*VT100*translations: #override \n\
     Ctrl Shift <Key>V:  insert-selection(CLIPBOARD) \n\
     Ctrl Shift <Key>C:        select-end(CLIPBOARD) \n\
 
+! ------------------------------------------------------------------------------
+! uxterm
+! ------------------------------------------------------------------------------
+
+UXTerm*faceName:Ubuntu Mono:Regular:size=11
+UXTerm*internalBorder: 8
+UXTerm*borderWidth: 0
+UXTerm*termName: uxterm
+UXTerm*metaSendsEscape: true
+UXTerm*selectToClipboard: true
+UXTerm*VT100*translations: #override \n\
+    Ctrl Shift <Key>V:  insert-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>C:        select-end(CLIPBOARD) \n\
 
 ! ------------------------------------------------------------------------------
 ! colors
@@ -127,6 +140,20 @@ XTerm*VT100*translations: #override \n\
 !*.colorIT:
 !*.colorUL:
 
+#define bg          #063341
+#define fg          #e5e5e5
+#define black01     #0d1010
+#define black02     #212121
+#define white01     #d9d9d9
+#define white02     #efefef
+#define red01       #d61d29
+#define red02       #e83b3f
+#define green01     #457b24
+#define green02     #7aba3a
+#define yellow01    #f6981e
+#define yellow02    #ffea2e
+#define blue01      #c97c18
+#define blue02      #ffea2e
 
 ! ------------------------------------------------------------------------------
 ! ROFI Color theme
@@ -134,13 +161,13 @@ XTerm*VT100*translations: #override \n\
 rofi.color-enabled: true
 
 !                  bg       border   separator
-rofi.color-window: #e5e5e5, #b7141f, #424242
+rofi.color-window: white01, blue01,   black02
 
-!                     bg       fg     bg-alt   hl-bg    hl-fg
-rofi.color-normal: #d9d9d9, #0d1010, #efefef, #b7141f, #e5e5e5
+!                  bg       fg       bg-alt   hl-bg    hl-fg
+rofi.color-normal: white01, black01, white02, blue01,  white02
 
-rofi.color-active: #000000, #268bd2, #070707, #e83b3f, #205171
-rofi.color-urgent: #000000, #d700ff, #0c0c0c, #e83b3f, #ffc39c
+!rofi.color-active: #000000, #268bd2, #070707, #e83b3f, #205171
+!rofi.color-urgent: #000000, #d700ff, #0c0c0c, #e83b3f, #ffc39c
 
 rofi.hide-scrollbar: true
 rofi.width: 500
