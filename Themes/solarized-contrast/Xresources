@@ -1,3 +1,5 @@
+! /home/rynnon/.Xresources
+
 ! ------------------------------------------------------------------------------
 ! font settings
 ! ------------------------------------------------------------------------------
@@ -139,6 +141,48 @@ UXTerm*VT100*translations: #override \n\
 *.colorBD:     #f6981e
 !*.colorIT:
 !*.colorUL:
+
+
+!solarized version
+
+! special
+*.foreground:   #e5e5e5
+*.background:   #063340
+*.cursorColor:  #e83b3f
+
+! black
+*.color0:       #212121
+*.color8:       #424242
+
+! red
+*.color1:       #dc322f
+*.color9:       #e83b3f
+
+! green
+*.color2:       #859900
+*.color10:      #7aba3a
+
+! yellow
+*.color3:       #b58900
+*.color11:      #e1ce29
+
+! blue
+*.color4:       #185884
+*.color12:      #268bd2
+
+! magenta
+*.color5:       #921ed4
+*.color13:      #d33682
+
+! cyan
+*.color6:       #0e717c
+*.color14:      #eee8d5
+
+! white
+*.color7:       #eee8d5
+*.color15:      #fdf6e3
+
+
 
 #define bg          #063341
 #define fg          #e5e5e5

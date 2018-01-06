@@ -131,8 +131,8 @@ smart_borders on
 
 # Some color adjustments
 # class                 border  backgr. text    indicator child_border
-client.focused_inactive #0d1010 #212121 #d9d9d9 #0d1010 #063441
-client.unfocused        #0d1010 #212121 #d9d9d9 #424242 #063441
+client.focused_inactive #0d1010 #212121 #d9d9d9 #0d1010 #063340
+client.unfocused        #0d1010 #212121 #d9d9d9 #424242 #063340
 client.focused          #d9d9d9 #cecece #000000 #d9d9d9 #d9d9d9
 
 # Set inner/outer gaps
