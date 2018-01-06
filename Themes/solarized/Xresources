@@ -71,9 +71,14 @@ URxvt.keysym.Shift-Control-V: perl:clipboard:paste
 URxvt.iso14755: False
 URxvt.perl-ext-common: default,clipboard
 
-URxvt.font: xft:Iosevka Term:Regular:size=10.5
-URxvt.boldFont: xft:Iosevka Term:Bold:size=10.5
+!URxvt.font: xft:Iosevka Term:Regular:size=10.5
+!URxvt.boldFont: xft:Iosevka Term:Bold:size=10.5
+!URxvt.letterSpace: -1
+
+URxvt.font: xft:Ubuntu Mono:Regular:size=11
+URxvt.boldFont: xft:Ubuntu Mono:Bold:size=11
 URxvt.letterSpace: -1
+
 
 ! fix for invisible underscore at certain fontsizes:
 URxvt.lineSpace: 1

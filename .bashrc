@@ -37,7 +37,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+    xterm|xterm-color|*-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -57,16 +57,20 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    if [[ ${EUID} == 0 ]] ; then
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\]'
+    else
+        PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\] \[\033[01;34m\] \w \$\[\033[00m\]'
+    fi
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h \w \$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h \w\a\]$PS1"
     ;;
 *)
     ;;
@@ -107,7 +111,8 @@ fi
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
+# 
+#sources /etc/bash.bashrc).
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
     . /usr/share/bash-completion/bash_completion
@@ -116,4 +121,26 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PS1="\[\e[1;32m\]\u\[\e[m\]\[\e[1;32m\]@\[\e[m\]\[\e[1;32m\]\h\[\e[m\]\[\e[m\] \[\e[m\]\[\e[92m\]\w\[\e[m\]\[\e[92m\] \[\e[m\]\[\e[1;33m\]\\$\[\e[m\] "
+if [ -x /usr/bin/mint-fortune ]; then
+     /usr/bin/mint-fortune
+fi
+
+# Import colorscheme from 'wal'
+#(~/bin/wal -r &)
+
+#PATH=$PATH:~/.local/bin
+#source virtualenvwrapper.sh
+
+export PS1="\[\e[1;32m\]\u\[\e[m\]\[\e[1;32m\]@\[\e[m\]\[\e[1;93m\]\h\[\e[m\]\[\e[m\] \[\e[m\]\[\e[92m\]\w\[\e[m\]\[\e[92m\] \[\e[m\]\[\e[1;33m\]\\$\[\e[m\] "
+
+# prompt copied from over here: https://www.reddit.com/r/unixporn/comments/7n9j81/i3gaps_first_rice_kali_as_a_dev_environment_yes/
+#export  PS1='\n\[\033[38;5;241m\]╔ \[\033[1m\]\[\033[38;5;254m\]\u \[\033[1;31m\]@\[\033[31m\]\h\[\033[0m\]\[\033[38;5;241m\]:\[\033[1m\]\[\033[38;5;254m\]\w\[\033[0m\]\n\[\033[38;5;241m\]╚ \[\033[38;5;246m\]»\[\033[38;5;250m\] '
+#export  PS1='\n\[\033[38;5;241m\]╔ \[\033[1m\]\[\033[92m\]\u\[\033[1;92m\]@\[\033[38;5;254m\]\h\[\033[0m\]\[\033[0;93m\]:\[\033[1m\]\[\033[0;92m\]\w\[\033[0m\]\n\[\033[38;5;241m\]╚ \[\033[38;5;246m\]»\[\033[38;5;250m\] '
+
+ranger() {
+    if [ -z "$RANGER_LEVEL" ]; then
+        /usr/bin/ranger "$@"
+    else
+        exit
+    fi
+}
