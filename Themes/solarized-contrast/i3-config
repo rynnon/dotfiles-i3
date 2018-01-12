@@ -121,7 +121,7 @@ bindsym $mod+r mode "resize"
 ################################################################################
 
 # Necessary for i3-gaps to work properly (pixel can be any value)
-for_window [class="^.*"] border pixel 4
+for_window [class="^.*"] border pixel 3
 
 # Smart Gaps
 smart_gaps on
@@ -131,8 +131,8 @@ smart_borders on
 
 # Some color adjustments
 # class                 border  backgr. text    indicator child_border
-client.focused_inactive #0d1010 #212121 #d9d9d9 #0d1010 #063441
-client.unfocused        #0d1010 #212121 #d9d9d9 #424242 #063441
+client.focused_inactive #0d1010 #212121 #d9d9d9 #0d1010 #052331
+client.unfocused        #0d1010 #212121 #d9d9d9 #424242 #052331
 client.focused          #d9d9d9 #cecece #000000 #d9d9d9 #d9d9d9
 
 # Set inner/outer gaps
@@ -214,8 +214,7 @@ exec --no-startup-id pulseaudio &
 exec --no-startup-id ~/.fehbg
 exec --no-startup-id xsettingsd
 exec --no-startup-id mpd ~/.mpd/mpd.conf
-exec --no-startup-id killall polybar
-exec --no-startup-id polybar bottom &
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 exec --no-startup-id xset s off
 exec --no-startup-id xset -dpms

@@ -69,9 +69,9 @@ then
 
   if cp $THEME_DIR/$THEME/polybar-config ~/.config/polybar/config
   then
-    echo '  [+] .config/polybar/config configuration file set up successfully'
+    echo '  [+] polybar configuration file set up successfully'
   else
-    echo '  [-] Failed to apply ./config/polybar/config configuration file'
+    echo '  [-] Failed to apply polybar configuration file'
   fi
 
   if cp $THEME_DIR/$THEME/xsettingsd ~/.xsettingsd
