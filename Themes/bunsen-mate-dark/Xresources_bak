@@ -1,0 +1,145 @@
+! font settings --------------------------------------------------------------
+
+Xft.autohint: true
+Xft.antialias: true
+Xft.hinting: true
+Xft.hintstyle: hintslight
+!Xft.dpi: 96
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+
+! xscreensaver ---------------------------------------------------------------
+
+!font settings
+xscreensaver.Dialog.headingFont:        -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
+xscreensaver.Dialog.bodyFont:           -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
+xscreensaver.Dialog.labelFont:          -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
+xscreensaver.Dialog.unameFont:          -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
+xscreensaver.Dialog.buttonFont:         -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
+xscreensaver.Dialog.dateFont:           -*-fixed-medium-r-*-*-12-*-*-*-*-*-*-*
+xscreensaver.passwd.passwdFont:         -*-fixed-medium-r-*-*-14-*-*-*-*-*-*-*
+!general dialog box (affects main hostname, username, password text)
+xscreensaver.Dialog.foreground:         #101010
+xscreensaver.Dialog.background:         #D8D8D8
+xscreensaver.Dialog.topShadowColor:     #D8D8D8
+xscreensaver.Dialog.bottomShadowColor:  #D8D8D8
+xscreensaver.Dialog.Button.foreground:  #101010
+xscreensaver.Dialog.Button.background:  #E5E5E5
+!username/password input box and date text colour
+xscreensaver.Dialog.text.foreground:    #101010
+xscreensaver.Dialog.text.background:    #E5E5E5
+xscreensaver.Dialog.internalBorderWidth:24
+xscreensaver.Dialog.borderWidth:        0
+xscreensaver.Dialog.shadowThickness:    2
+!timeout bar (background is actually determined by Dialog.text.background)
+xscreensaver.passwd.thermometer.foreground:  #101010
+xscreensaver.passwd.thermometer.background:  #2E2E2E
+xscreensaver.passwd.thermometer.width:       8
+
+! urxvt -------------------------------------------
+
+
+URxvt.font: xft:iosevka-term:size=10.5
+URxvt.boldFont: xft:iosevka-term:Bold:size=10.5
+URxvt.letterSpace: -1
+
+! fix for invisible underscore at certain fontsizes:
+URxvt.lineSpace: 1
+
+URxvt.internalBorder:  12
+
+! Add fallback fonts as laid out in `man 1 urxvt` under "font:" in the RESOURCES section
+
+! Window size and position
+!URxvt*geometry: 60x22+50+100
+! Window size, let the Window Manager position it
+URxvt.geometry: 80x28
+
+URxvt.scrollstyle: plain
+URxvt.scrollBar: false
+URxvt.scrollBar_right: true
+URxvt.iconFile: /usr/share/icons/Faenza-Bunsen-common/apps/48/utilities-terminal.png
+
+! scrollback buffer lines - 65535 is max (64 is default)
+URxvt.saveLines:16384
+
+! True transparency, opacity percentage set in square brackets before URxvt.background colour
+URxvt.depth: 16
+
+! Clickble URLs
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/x-www-browser
+URxvt.matcher.button: 3
+
+! sensible copy + paste
+URxvt.perl-ext-common:        default,xkr-clipboard
+URxvt.iso14755:               false
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Control-Insert:  perl:clipboard:copy
+
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.iso14755: False
+URxvt.perl-ext-common: default,clipboard
+
+!transparency
+URxvt.transparent: true
+URxvt*shading: 80
+
+! special
+*.foreground:   #000000
+*.background:   #e6e6e6
+*.cursorColor:  #433b32
+
+! black
+*.color0:       #16130f
+*.color8:       #5a5047
+
+! red
+*.color1:       #826d57
+*.color9:       #826d57
+
+! green
+*.color2:       #57826d
+*.color10:      #57826d
+
+! yellow
+*.color3:       #6d8257
+*.color11:      #6d8257
+
+! blue
+*.color4:       #6d5782
+*.color12:      #6d5782
+
+! magenta
+*.color5:       #82576d
+*.color13:      #82576d
+
+! cyan
+*.color6:       #576d82
+*.color14:      #576d82
+
+! white
+*.color7:       #a39a90
+*.color15:      #dbd6d1
+
+
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+
+!                  bg       border   separator
+rofi.color-window: #e5e5e5, #b7141f, #424242
+
+!                     bg       fg     bg-alt   hl-bg    hl-fg
+rofi.color-normal: #d9d9d9, #0d1010, #efefef, #b7141f, #e5e5e5
+
+rofi.color-active: #000000, #268bd2, #070707, #e83b3f, #205171
+rofi.color-urgent: #000000, #d700ff, #0c0c0c, #e83b3f, #ffc39c
+
+rofi.hide-scrollbar: true
+rofi.width: 500
+rofi.lines: 8
+
+rofi.bw: 4
+rofi.font: Noto Sans Regular 13
+

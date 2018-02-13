@@ -1,0 +1,179 @@
+#! /home/rynnon/.rubies/ruby-1.9.3-p551/bin/ruby
+# coding: utf-8
+
+=begin
+Description:
+  This script synchronizes specified directories interactively.
+
+to do:
+  -count_errors(): search through output in rsyncing
+  -make non-interactive version
+
+=end
+
+require 'digest/sha1'
+require 'open3'
+
+logfile = "rsync-alle-output"
+
+# ---------------- TERA ------ -------------------------------------------------
+path_anime       = "/home/rynnon/TERA/Filme/Anime_synchronisierungswert/"
+path_musik       = "/home/rynnon/TERA/Musik/"
+path_synchr      = "/home/rynnon/TERA/synchroner_ordner/"
+path_netb        = "/media/rynnon/TERA/synchroner ordner netbook(firefox will nicht)/"
+path_spiele      = "/media/rynnon/TERA/spiele/"
+path_spielgedöns = "/media/rynnon/TERA/spiel-gedöns/"
+path_spielstände = "/home/rynnon/TERA/spielstände/"
+path_handb_backup   = "/home/rynnon/TERA/synchroner_ordner/IT-zeug/handbuecher, codebeispiele/"
+path_marneu_backup  = "/home/rynnon/TERA/synchroner_ordner/IT-zeug/_marneu"
+path_rsync_backup   = "/media/rynnon/TERA/rsync/"
+
+# ---------------- DATAPUPPY ---------------------------------------------------
+path_marneu  = "/media/rynnon/DATAPUPPY/_marneu/"
+path_handb   = "/media/rynnon/DATAPUPPY/handbuecher, codebeispiele/"
+path_rsync   = "/media/rynnon/DATAPUPPY/_marneu/workspace-ruby/rsync/"
+
+# ---------------- Sinan Power -------------------------------------------------
+path_musik_backup = "/media/rynnon/Sinan Power/-- Musik[backup]"
+path_anime_backup = "/media/rynnon/Sinan Power/Anime_synchronisierungswert[backup]/"
+path_spielstände_sinan_backup = "/media/rynnon/Sinan Power/spielstände[backup]/"
+path_synchr_sinan_backup      = "/media/rynnon/Sinan Power/synchroner_ordner[backup]/"
+
+# ---------------- memline -----------------------------------------------------
+path_musik_mem_backup   = "/media/rynnon/memline1/Musik/"
+# path_synchr_backup      = "/media/rynnon/memline1/synchroner_ordner/"
+path_synchr_backup      = "/media/rynnon/memline/synchroner_ordner/"
+path_netb_backup        = "/media/rynnon/memline1/synchroner ordner netbook/"
+path_spiele_backup      = "/media/rynnon/memline1/spiele/"
+path_spielgedöns_backup = "/media/rynnon/memline1/spiel-gedöns/"
+path_spielstände_backup = "/media/rynnon/memline1/spielstände/"
+
+# -----------------VM / debug --------------------------------------------------
+path_vm_rsync = "/media/marlon/DATAPUPPY/_marneu/workspace-ruby/rsync/"
+path_vm_rsync_backup = "/home/marlon/ruby-workspace/rsync/"
+
+# das dauert einfach zu lange.
+# ist auch noch nicht rekursiv, daher nutzlos
+def hash_directory(path)
+  hashes = Array.new
+  Dir.entries(path).each do |f|
+    next if f == "." || f == ".."
+    hashes << Digest::SHA1.hexdigest(f)
+  end
+  hashes.sort! # arrays are not equal if sequence is not the same
+end
+
+# does the actual backup and logs the rsync-output to file
+def rsyncing(path,path_backup,error_txt)
+  output = `rsync -a -v --no-o --no-g  \"#{path}\" \"#{path_backup}\" --delete-before 2>&1`
+  log_filler(error_txt, output)
+  return output
+end
+
+def log_filler(error_txt, output)
+  file = File.open(error_txt, "a")
+  file << output
+  file << "-------------------------------------------------------------\n"
+  file.close
+end
+
+def count_errors(logfile)
+  # count lines
+  # search for keywords "failed", "error" in rsyncing's return value
+  # return line-count and error-count as hash
+end
+
+loop do
+  $directories = ""
+  puts "\nThis script will backup $directories to harddrive 'sinan' using rsync.
+        Specify directories to backup (separate with commata):\n
+                a:  Anime (synchronisierungswert) (sinan)\n
+                m:  Musik (Sinan Power)\n
+                mm: Musik (memline)\n
+                r:  rsync (ruby-scripts)\n
+                s:  spiele (memline)\n
+                sg: spiel-gedöns (memline)\n
+                st: spielstände (memline,output doesnt go into log-file)\n
+                ss: spielstände (sinan,output doesnt go into log-file)\n
+                ma: marneu\n
+                h:  handbuecher\n
+                sy: synchroner_ordner (output doesnt go into log-file)\n
+                sys: synchroner_ordner (sinan,output doesnt go into log-file)\n
+                sn: synchroner_ordner_netbook (output doesnt go into log-file)\n
+                vm: rsync in virtual machine\n"
+
+  $directories = gets.chomp.split(",")
+
+  puts "You chose these directories to backup:\n\n"
+  puts "\t#{path_musik} \n"       if $directories.include?("m")
+  puts "\t#{path_musik} \n"       if $directories.include?("mm")
+  puts "\t#{path_anime} \n"       if $directories.include?("a")
+  puts "\t#{path_rsync} \n"       if $directories.include?("r")
+  puts "\t#{path_spiele} \n"      if $directories.include?("s")
+  puts "\t#{path_spielgedöns} \n" if $directories.include?("sg")
+  puts "\t#{path_spielstände} \n" if $directories.include?("st")
+  puts "\t#{path_spielstände} \n" if $directories.include?("ss")
+  puts "\t#{path_marneu} \n"      if $directories.include?("ma")
+  puts "\t#{path_handb} \n"       if $directories.include?("h")
+  puts "\t#{path_synchr} \n"      if $directories.include?("sy")
+  puts "\t#{path_synchr} \n"      if $directories.include?("sys")
+  puts "\t#{path_netb} \n"        if $directories.include?("sn")
+  puts "\t#{path_vm_rsync} \n"    if $directories.include?("vm")
+  puts "\n(y/n)"
+
+  confirmation = gets.chomp
+  puts "\n"
+  break if confirmation == "y"
+end
+
+error_file = File.open(logfile, "w+")
+error_file << "#{Time.now} \n\n"
+error_file << "-------------------------------------------------------------\n"
+error_file.close
+
+rsyncing( path_musik,
+          path_musik_backup,
+          error_file)         if $directories.include?("m")
+rsyncing( path_musik,
+          path_musik_mem_backup,
+          error_file)         if $directories.include?("mm")
+rsyncing( path_anime,
+          path_anime_backup,
+          error_file)         if $directories.include?("a")
+rsyncing( path_rsync,
+          path_rsync_backup,
+          error_file)         if $directories.include?("r")
+rsyncing( path_spiele,
+          path_spiele_backup,
+          error_file)         if $directories.include?("s")
+rsyncing( path_spielgedöns,
+          path_spielgedöns_backup,
+          error_file)         if $directories.include?("sg")
+rsyncing( path_spielstände,
+          path_spielstände_backup,
+          error_file)         if $directories.include?("st")
+rsyncing( path_spielstände,
+          path_spielstände_sinan_backup,
+          error_file)         if $directories.include?("ss")
+rsyncing( path_marneu,
+          path_marneu_backup,
+          error_file)         if $directories.include?("ma")
+rsyncing( path_handb,
+          path_handb_backup,
+          error_file)         if $directories.include?("h")
+rsyncing( path_synchr,
+          path_synchr_backup,
+          error_file)         if $directories.include?("sy")
+rsyncing( path_synchr,
+          path_synchr_sinan_backup,
+          error_file)         if $directories.include?("sys")
+rsyncing( path_netb,
+          path_netb_backup,
+          error_file)         if $directories.include?("sn")
+rsyncing( path_vm_rsync,
+          path_vm_rsync_backup,
+          error_file)         if $directories.include?("vm")
+
+puts "\nBring up log file? (y/n)"
+confirm = gets.chomp
+`xed #{logfile}` if confirm == "y"

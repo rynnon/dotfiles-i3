@@ -1,0 +1,7 @@
+#!/usr/bin/env  bash
+
+echo "
+adresse: speedport.ip"
+echo "wlan-passwort: 8168878412717293"
+echo "gerätepasswort: 26313399
+"

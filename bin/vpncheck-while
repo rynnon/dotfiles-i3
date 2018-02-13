@@ -1,0 +1,11 @@
+#!/bin/bash
+
+while true
+do
+	if ifconfig tun0 &> /dev/null; then
+    	echo -e "\033[1;32m" "-- VPN is active --" "\033[0m"
+    else
+        echo -e "\033[1;31m" "-- VPN is not active --" "\033[0m"
+    fi
+    sleep 2
+done

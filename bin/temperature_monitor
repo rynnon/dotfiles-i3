@@ -1,0 +1,37 @@
+#!/usr/bin/python3
+''' This script reads various system temperature sensors and puts them onto the
+    command line. Needs to be started with 'sudo'.
+
+    Problem:
+        Core 2 Duo-System makes an audible and somewhat annoying sound for every
+        loop, It's most probably the harddrives. Did not test on another system,
+        yet.
+'''
+import os, time
+
+while(True):
+    temp_cpu = os.popen("sensors")
+    temp_array = []
+    for x in temp_cpu:
+        temp_array.append(x.rstrip())
+    temp_hdd = os.popen("hddtemp /dev/sda")
+    for x in temp_hdd:
+        temp_array.append(x.rstrip())
+    temp_hdd2 = os.popen("hddtemp /dev/sdb")
+    for x in temp_hdd2:
+        temp_array.append(x.rstrip())
+    core_0  = temp_array[6][14:21]
+    core_1  = temp_array[7][14:21]
+    pci     = temp_array[11][14:21]
+    hdd     = temp_array[13][23:28]
+    tera    = temp_array[14][32:37]
+    os.system("clear")
+    print("\n\t##################################")
+    print("\t### System Temperature Monitor ###")
+    print("\t##################################\n\n")
+    print("\t\tCore 0:   ", core_0)
+    print("\t\tCore 1:   ", core_1)
+    print("\t\tPCI: \t  ", pci)
+    print("\t\t/dev/sda:  ", hdd)
+    print("\t\t/dev/sdb:  ", tera)
+    time.sleep(20)

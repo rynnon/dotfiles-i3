@@ -1,0 +1,485 @@
+#!/bin/bash -e
+
+# Usage: pdf2{odt,ods} [ options ] input.{jpg,pdf,png} ... output.{odt,ods}
+#
+# This script converts one or more PDF, JPG, or PNG files to an ODT or ODS
+# file. The contents of any PDF file(s) is first converted to a set of image
+# files. These files are then inserted as background images in the ODT or
+# ODS file.
+#
+# Copyright (c) 2011 Markus Gutschke. All rights reserved.
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to
+# deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+# sell copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
+
+export LC_ALL=C
+
+# Check arguments
+[ $# -ge 2 ] || {
+  echo "Usage:" >&2
+  echo "  $(basename "$0") [ options ] input.{jpg,pdf,png} ... output.{odt,ods}" >&2
+  echo >&2
+  echo "Options:" >&2
+  echo "  --                   Stop scanning for options." >&2
+  echo "  --format={odt|ods}   Select output file format." >&2
+  echo "  --margin=X{cm|in}    Add extra margin around input files." >&2
+  echo "  --paper={letter|a4}  Select paper size." >&2
+  echo "  --portrait           Portrait is always the default orientation." >&2
+  echo "  --landscape          Assume all input files are in landscape format." >&2
+  echo "  --resolution=RES     Change resolution of embedded images." >&2
+  echo "                       Only affects PDF files. PDF/PNG files will not" >&2
+  echo "                       be rescaled." >&2
+  echo "  --trim|--no-trim     Attempt to trim existing margins from input files." >&2
+  exit 1
+}
+
+# Attempt to deduce the output file format from the output file name.
+eval out="\${$#}"
+format="${out##*.}"; format="$(printf '%s' "${format}"|tr A-Z a-z)"
+[ "x${format}" = "xodt" -o "x${format}" = "xods" ] || format="${0: -3}"
+[ "x${format}" = "xodt" -o "x${format}" = "xods" ] || format="odt"
+
+# Select default papersize.
+papersize="${PAPERSIZE:-$(cat "${PAPERCONF:-/etc/papersize}" 2>/dev/null || :)}"
+[ "x${papersize}" != "a4" ] && papersize="letter"
+
+# Parse position-independent command line flags.
+pdf=("$@"); unset pdf[$((${#pdf[@]}-1))]
+margin="0in"
+orientation="portrait"
+i=0; while [ ${i} -lt ${#pdf[@]} ]; do
+  if [ "x${pdf[${i}]#-}" != "x${pdf[${i}]}" ]; then
+    case "${pdf[${i}]}" in
+      --)
+        break
+        ;;
+      --format|--format=*)
+        if [ "x${pdf[${i}]#--format=}" != "x${pdf[${i}]}" ]; then
+          format="${pdf[${i}]#--format=}"
+        else
+          i=$((${i} + 1))
+          format="${pdf[${i}]}"
+        fi
+        format="$(printf '%s' "${format}"|tr A-Z a-z)"
+        if [ "x${format}" != "xodt" -a "x${format}" != "xods" ]; then
+          echo "Unsupported output format \"${format}\"." >&2
+          exit 1
+        fi
+        ;;
+      --margin|--margin=*)
+        if [ "x${pdf[${i}]#--margin=}" != "x${pdf[${i}]}" ]; then
+          margin="${pdf[${i}]#--margin=}"
+        else
+          i=$((${i} + 1))
+          margin="${pdf[${i}]}"
+        fi
+        if [ "x${margin%in}" == "x${margin}" -a \
+             "x${margin%cm}" == "x${margin}" ]; then
+          echo "Unsupported margin \"${margin}\" provided." >&2
+          exit 1
+        else
+          margin="${margin/-/_}"
+        fi
+        ;;
+      --paper|--paper=*)
+        if [ "x${pdf[${i}]#--paper=}" != "x${pdf[${i}]}" ]; then
+          papersize="${pdf[${i}]#--paper=}"
+        else
+          i=$((${i} + 1))
+          papersize="${pdf[${i}]}"
+        fi
+        if [ "x${papersize}" != "xletter" -a "x${papersize}" != "xa4" ]; then
+          echo "Unsupported paper size \"${papersize}\" provided." >&2
+          exit 1
+        fi
+        ;;
+      --portrait)
+        orientation="portrait"
+        ;;
+      --landscape)
+        orientation="landscape"
+        ;;
+      --resolution=*)
+        ;;
+      --resolution)
+        i=$((${i} + 1))
+        ;;
+      --trim|--no-trim)
+        ;;
+      *)
+        echo "Unknown command line option \"${pdf[${i}]}\"." >&2
+        exit 1
+        ;;
+    esac
+  else
+    if [ ! -r "${pdf[${i}]}" ]; then
+      echo "Invalid or non-existent filename \"${pdf[${i}]}\"." >&2
+      exit 1
+    fi
+  fi
+  i=$((${i} + 1))
+done
+[ "${format}" = odt ] && formatname="Text" || formatname="Spreadsheet"
+if [ "${papersize}" = "letter" ]; then
+  units="in"
+  units2inch="1"
+  width="8.5"
+  height="11"
+  if [ "x${margin%in}" != "x${margin}" ]; then
+    margin="${margin%in}"
+  else
+    margin="$(dc -e "3k ${margin%cm} 2.54/p")"
+  fi
+else
+  units="mm"
+  units2inch="25.4"
+  width="210"
+  height="297"
+  if [ "x${margin%cm}" != "x${margin}" ]; then
+    margin="${margin%cm}"
+  else
+    margin="$(dc -e "3k ${margin%in} 2.54*p")"
+  fi
+fi
+if [ "${orientation}" != "portrait" ]; then
+  w="${width}"
+  width="${height}"
+  height="${w}"
+fi
+
+# Don't overwrite the output file, unless it is an ODT/ODS file already.
+# This protects users from overwriting input files, if they completely
+# forgot to specify any output file.
+if [ -e "${out}" ] &&
+   [[ ! "$(file "${out}" 2>/dev/null)" =~ "OpenDocument ${formatname}" ]]; then
+  echo "Did you forget to specify the output file name? \"${out}\"" \
+       "exists, but is not an $(printf '%s' "${format}"|tr a-z A-Z) file" >&2
+  exit 1
+fi
+
+# Set up temporary staging directory
+TMPDIR="/tmp/pdf2odt.$$"
+[ \! -e "${TMPDIR}" ] || {
+  echo "Staging directory ${TMPDIR} already exists" >&2
+  exit 1
+}
+trap 'rm -rf "${TMPDIR}"' EXIT INT TERM QUIT HUP
+mkdir -p "${TMPDIR}"
+
+# Adjust DPI so that the image fits on a letter- or a4-sized page.
+function scale() {
+  local res="$(identify "${1}")"
+  res="$(echo "x ${res#${1}}"|awk '{ print $3 }')"
+  local dpiX=$(dc -e "3k ${res%x*} ${width} ${margin} 2*- ${units2inch}/0k/p")
+  local dpiY=$(dc -e "3k ${res#*x} ${height} ${margin} 2*- ${units2inch}/0k/p")
+  [ ${dpiX} -gt ${dpiY} ] && local dpi="${dpiX}" || local dpi="${dpiY}"
+  convert "${1}" -set units PixelsPerInch -set density "${dpi}" "${2}"
+}
+
+# Preprocess image file(s), and convert PDF file(s) to images
+mkdir -p "${TMPDIR}/Pictures"
+endofargs=
+resolution=300
+trim=
+i=0; while [ ${i} -lt ${#pdf[@]} ]; do
+  if [ -z "${endofargs}" -a "x${pdf[${i}]#-}" != "x${pdf[${i}]}" ]; then
+    case "${pdf[${i}]}" in
+      --)
+        endofargs=t
+        ;;
+      --format=*|--margin=*|--paper=*|--portrait|--landscape)
+        ;;
+      --format|--margin|--paper)
+        i=$((${i} + 1))
+        ;;
+      --resolution*)
+        if [ "x${pdf[${i}]#--resolution=}" != "x${pdf[${i}]}" ]; then
+          resolution="${pdf[${i}]#--resolution=}"
+        else
+          i=$((${i} + 1))
+          resolution="${pdf[${i}]}"
+        fi
+        if [ "x${resolution}" != "x$(printf '%s' "${resolution}"|sed 's/[^0-9]//')" ] ||
+           [ "${resolution}" -lt 50 -o "${resolution}" -gt 2400 ]; then
+          echo "Invalid resolution \"${resolution}\" provided." >&2
+          exit 1
+        fi
+        ;;
+      --trim)
+        trim="t"
+        ;;
+      --no-trim)
+        trim=
+        ;;
+      *)
+        echo "Unknown command line option \"${pdf[${i}]}\"." >&2
+        exit 1
+        ;;
+    esac
+  else
+    suffix="${pdf[${i}]##*.}"; suffix="$(printf '%s' "${suffix}"|tr A-Z a-z)"
+    n=$(($(ls "${TMPDIR}/Pictures/Image-"* 2>/dev/null | wc -l) + 1))
+    case "$suffix" in
+      png|jpg|jpeg)
+        if [ "$suffix" = "jpg" ]; then suffix="jpeg"; fi
+        in="${pdf[${i}]}"
+        ot="${TMPDIR}/Pictures/Image-$(printf '%03d' $n).$suffix"
+        [ -n "${trim}" ] && { convert "${in}" "${ot}"; in="${ot}"; }
+        scale "${in}" "${ot}"
+        ;;
+      *)
+        gs -dNOPAUSE -sDEVICE=png256 \
+           -sOutputFile="${TMPDIR}/Pictures/TMP-%03d.png" \
+           -q -r"${resolution}" -dBATCH "${pdf[${i}]}"
+        for j in "${TMPDIR}/Pictures/TMP-"*".png"; do
+          in="${j}"
+          ot="${TMPDIR}/Pictures/Image-$(printf '%03d' $n).png"
+          [ -n "${trim}" ] && { convert "${in}" "${ot}"; in="${ot}"; }
+          if [ "${margin}" != "0" ]; then
+            scale "${in}" "${ot}"
+            [ "${in}" != "${ot}" ] && rm -f "${in}"
+          elif [ "${in}" != "${ot}" ]; then
+            mv "${in}" "${ot}"
+          fi
+          n=$((${n} + 1))
+        done
+        ;;
+    esac
+  fi
+  i=$((${i} + 1))
+done
+mkdir -p "${TMPDIR}/META-INF"
+
+# Create "mimetype" file
+printf '%s' "application/vnd.oasis.opendocument.$(printf '%s' "${formatname}"|tr A-Z a-z)" >"${TMPDIR}/mimetype"
+
+# Create "META-INF/manifest.xml" file
+{ cat <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest:manifest xmlns:manifest="urn:oasis:names:tc:opendocument:xmlns:manifest:1.0">
+  <manifest:file-entry manifest:media-type="application/vnd.oasis.opendocument.$(printf '%s' "${formatname}"|tr A-Z a-z)" manifest:version="1.2" manifest:full-path="/"/>
+  <manifest:file-entry manifest:media-type="text/xml" manifest:full-path="content.xml"/>
+  <manifest:file-entry manifest:media-type="text/xml" manifest:full-path="styles.xml"/>
+EOF
+[ "${format}" = "ods" ] &&
+  echo '  <manifest:file-entry manifest:media-type="text/xml" manifest:full-path="settings.xml"/>'
+ls "${TMPDIR}/Pictures/"*.{png,jpeg} 2>/dev/null | sort | \
+  sed 's/^.*\/Pictures\/\([^.]*[.]\)\(.*\)/  <manifest:file-entry manifest:media-type="image\/\2" manifest:full-path="Pictures\/\1\2/;s/$/"\/>/'
+echo '</manifest:manifest>'; } >"${TMPDIR}/META-INF/manifest.xml"
+
+# Create "content.xml" file
+if [ "${format}" = "odt" ]; then
+cat <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document-content
+ xmlns:grddl="http://www.w3.org/2003/g/data-view#"
+ xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
+ xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0"
+ xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0"
+ grddl:transformation="http://docs.oasis-open.org/office/1.2/xslt/odf2rdf.xsl"
+ office:version="1.2">
+  <office:automatic-styles>
+EOF
+ls "${TMPDIR}/Pictures/"*.{png,jpeg} 2>/dev/null | sort | \
+  sed 's/^.*\/Pictures\/Image-\([0-9]*\)[.].*/    <style:style style:name="Image\1" style:family="paragraph" style:master-page-name="Image\1"><style:paragraph-properties style:page-number="auto"\/><\/style:style>/'
+cat <<'EOF'
+  </office:automatic-styles>
+  <office:body>
+    <office:text text:use-soft-page-breaks="true">
+EOF
+ls "${TMPDIR}/Pictures/"*.{png,jpeg} 2>/dev/null | sort | \
+  sed 's/^.*\/Pictures\/Image-\([0-9]*\)[.].*/      <text:p text:style-name="Image\1"\/>/'
+cat <<'EOF'
+    </office:text>
+  </office:body>
+</office:document-content>
+EOF
+else
+if [ "${papersize}" = "letter" ]; then
+  xcs="0.03125" # 1/32"
+  ycs="0.03125" # 1/32"
+  ucs="in"
+  u2i="1"
+else
+  xcs="0.75"
+  ycs="0.75"
+  ucs="mm"
+  u2i="25.4"
+fi
+wcs="$(dc -e "10k ${width}  ${units2inch}/ ${xcs} ${u2i}/0k/p")"
+hcs="$(dc -e "10k ${height} ${units2inch}/ ${ycs} ${u2i}/0k/p")"
+col="$(dc -e "${wcs} [1 - d 26 % 65 + a r 26 / d 0 !=a] sa lax sa [n z 0 !=a]sa lax")"
+cat <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document-content
+ xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
+ xmlns:calcext="urn:org:documentfoundation:names:experimental:calc:xmlns:calcext:1.0"
+ xmlns:draw="urn:oasis:names:tc:opendocument:xmlns:drawing:1.0"
+ xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0"
+ xmlns:svg="urn:oasis:names:tc:opendocument:xmlns:svg-compatible:1.0"
+ xmlns:table="urn:oasis:names:tc:opendocument:xmlns:table:1.0"
+ xmlns:text="urn:oasis:names:tc:opendocument:xmlns:text:1.0"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ office:version="1.2">
+  <office:automatic-styles>
+    <style:style style:name="co1" style:family="table-column">
+      <style:table-column-properties style:column-width="${xcs}${ucs}"/>
+    </style:style>
+    <style:style style:name="ro1" style:family="table-row">
+      <style:table-row-properties style:row-height="${ycs}${ucs}"/>
+    </style:style>
+  </office:automatic-styles>
+  <office:body>
+    <office:spreadsheet>
+EOF
+ls "${TMPDIR}/Pictures/"*.{png,jpeg} 2>/dev/null | sort | \
+ while read -r file; do
+  idx="${file#${TMPDIR}/Pictures/Image-}"; idx="$(dc -e "${idx%.*}p")"
+  res="$(identify "${file}")"
+  res="$(echo "x ${res#${file}}"|awk '{ print $3 }')"
+  trim='/[.]/b1;q;:1;s/\([1-9]\)0*$/\1/;s/[.]0*$//'
+  round=' 8k1/0.00000005+6k1/'
+  iwu="$(dc -e "10k ${height} ${res#*x}/${res%x*}*ddsa ${width} dsb [lb]sc<c ${units2inch}/${u2i}*${round}p"|sed "${trim}")"
+  ihu="$(dc -e "10k ${width}  ${res%x*}/${res#*x}*ddsa ${height}dsb [lb]sc<c ${units2inch}/${u2i}*${round}p"|sed "${trim}")"
+  ilo="$(dc -e "10k ${width}  ${units2inch}/${u2i}* ${iwu}- 2/${round}p"|sed -e "${trim}")"
+  ito="$(dc -e "10k ${height} ${units2inch}/${u2i}* ${ihu}- 2/${round}p"|sed -e "${trim}")"
+  cat <<EOF
+      <table:table table:name="Sheet${idx}" table:print-ranges="Sheet${idx}.A1:Sheet${idx}.${col}${hcs}">
+        <table:shapes>
+          <draw:frame draw:z-index="0" draw:name="Image ${idx}" table:table-background="true" svg:width="${iwu}${ucs}" svg:height="${ihu}${ucs}" svg:x="${ilo}${ucs}" svg:y="${ito}${ucs}">
+            <draw:image xlink:href="${file#${TMPDIR}/}" xlink:type="simple" xlink:show="embed" xlink:actuate="onLoad">
+            </draw:image>
+          </draw:frame>
+        </table:shapes>
+        <table:table-column table:style-name="co1" table:number-columns-repeated="${wcs}"/>
+        <table:table-row table:style-name="ro1" table:number-rows-repeated="$((hcs-1))">
+          <table:table-cell table:number-columns-repeated="${wcs}"/>
+        </table:table-row>
+        <table:table-row table:style-name="ro1">
+          <table:table-cell table:number-columns-repeated="$((wcs-1))"/>
+          <table:table-cell office:value-type="string" calcext:value-type="string">
+            <text:p><text:s/></text:p>
+          </table:table-cell>
+        </table:table-row>
+      </table:table>
+EOF
+  done
+cat <<'EOF'
+    </office:spreadsheet>
+  </office:body>
+</office:document-content>
+EOF
+fi >"${TMPDIR}/content.xml"
+
+# Create "styles.xml" file
+if [ "${format}" = "odt" ]; then
+cat <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document-styles xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
+ xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0"
+ xmlns:grddl="http://www.w3.org/2003/g/data-view#"
+ xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0"
+ xmlns:xlink="http://www.w3.org/1999/xlink"
+ grddl:transformation="http://docs.oasis-open.org/office/1.2/xslt/odf2rdf.xsl"
+ office:version="1.2">
+  <office:automatic-styles>
+EOF
+ls "${TMPDIR}/Pictures/"*.{png,jpeg} 2>/dev/null | sort | \
+  sed 's/^.*\/Pictures\/Image-\([0-9]*\)[.]\(.*\)/    <style:page-layout style:name="Image\1"><style:page-layout-properties fo:page-width="'"${width}${units}"'" fo:page-height="'"${height}${units}"'" style:num-format="1" style:print-orientation="'"${orientation}"'" fo:margin-top="0in" fo:margin-bottom="0in" fo:margin-left="0in" fo:margin-right="0in" fo:background-color="transparent" style:writing-mode="lr-tb" style:footnote-max-height="0in"><style:background-image xlink:href="Pictures\/Image-\1.\2" xlink:type="simple" xlink:actuate="onLoad" style:position="center center" style:repeat="no-repeat"\/><\/style:page-layout-properties><\/style:page-layout>/'
+cat <<'EOF'
+  </office:automatic-styles>
+  <office:master-styles>
+EOF
+ls "${TMPDIR}/Pictures/"*.{png,jpeg} 2>/dev/null | sort | \
+  sed 's/^.*\/Pictures\/Image-\([0-9]*\)[.].*/    <style:master-page style:name="Image\1" style:page-layout-name="Image\1"\/>/'
+cat <<'EOF'
+  </office:master-styles>
+</office:document-styles>
+EOF
+else
+cat <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document-styles xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
+ xmlns:style="urn:oasis:names:tc:opendocument:xmlns:style:1.0"
+ xmlns:fo="urn:oasis:names:tc:opendocument:xmlns:xsl-fo-compatible:1.0"
+ office:version="1.2">
+  <office:styles>
+    <style:default-style style:family="graphic">
+      <style:paragraph-properties style:font-independent-line-spacing="true"/>
+      <style:text-properties style:font-family-generic="roman" style:font-pitch="variable" fo:font-size="0pt"/>
+    </style:default-style>
+  </office:styles>
+  <office:automatic-styles>
+    <style:page-layout style:name="PageLayout">
+      <style:page-layout-properties fo:margin-top="0in" fo:margin-bottom="0in" fo:margin-left="0in" fo:margin-right="0in" fo:page-width="${width}${units}" fo:page-height="${height}${units}" style:scale-to-pages="1"/>
+      <style:header-style>
+        <style:header-footer-properties fo:min-height="0in" fo:margin-left="0in" fo:margin-right="0in" fo:margin-bottom="0in"/>
+      </style:header-style>
+      <style:footer-style>
+        <style:header-footer-properties fo:min-height="0in" fo:margin-left="0in" fo:margin-right="0in" fo:margin-top="0in"/>
+      </style:footer-style>
+    </style:page-layout>
+  </office:automatic-styles>
+  <office:master-styles>
+    <style:master-page style:name="Default" style:page-layout-name="PageLayout">
+      <style:header style:display="false"/>
+      <style:header-left style:display="false"/>
+      <style:footer style:display="false"/>
+      <style:footer-left style:display="false"/>
+    </style:master-page>
+  </office:master-styles>
+</office:document-styles>
+EOF
+fi >"${TMPDIR}/styles.xml"
+
+# Create "settings.xml" file
+if [ "${format}" = "ods" ]; then
+cat >>"${TMPDIR}/settings.xml" <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<office:document-settings
+ xmlns:office="urn:oasis:names:tc:opendocument:xmlns:office:1.0"
+ xmlns:config="urn:oasis:names:tc:opendocument:xmlns:config:1.0"
+ xmlns:ooo="http://openoffice.org/2004/office"
+ office:version="1.2">
+  <office:settings>
+    <config:config-item-set config:name="ooo:view-settings">
+      <config:config-item-map-indexed config:name="Views">
+        <config:config-item-map-entry>
+          <config:config-item config:name="ShowGrid" config:type="false">true</config:config-item>
+        </config:config-item-map-entry>
+      </config:config-item-map-indexed>
+    </config:config-item-set>
+  </office:settings>
+</office:document-settings>
+EOF
+fi
+
+# Pack individual files into ODT/ODS archive
+[ "x${out}" = "x${out#/}" ] && out="${PWD}/${out}" || :
+rm -f "${out}"
+cd "${TMPDIR}" &&
+  zip -m -q -X -0 "${out}" mimetype &&
+  zip -m -q -X    "${out}" $(find . -name mimetype -o -type f -print) &&
+  cd ..
+
+# Clean up
+rm -rf "${TMPDIR}"
+trap '' EXIT INT TERM QUIT HUP
+
+# Done
+exit 0

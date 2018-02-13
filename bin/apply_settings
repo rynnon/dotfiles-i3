@@ -1,0 +1,10 @@
+#!/bin/bash
+killall xsettingsd
+killall mate-settings-daemon
+mate-settings-daemon &
+echo "sleeping ..."
+sleep 1
+echo "continuing."
+xrdb ~/.Xresources
+exec $HOME/.fehbg
+exec ~/config/polybar/launsh.sh

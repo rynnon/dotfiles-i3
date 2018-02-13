@@ -1,0 +1,2 @@
+#!/bin/bash
+urxvt -e sshpass -f <(printf '%s\n' jundmundr+) ssh 10.0.1.1

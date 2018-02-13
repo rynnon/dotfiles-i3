@@ -1,0 +1,3 @@
+#!/bin/bash
+dconf write /org/mate/desktop/session/required-components/panel "''"
+dconf write /org/mate/desktop/session/required-components/windowmanager "'i3'"

@@ -1,0 +1,24 @@
+#!/usr/bin/python3
+''' This script reads various system temperature sensors and puts them onto the
+    command line. Needs to be started with 'sudo'.
+
+    Problem:
+        Core 2 Duo-System makes an audible and somewhat annoying sound for every
+        loop, It's most probably the harddrives. Did not test on another system,
+        yet.
+'''
+import os, time
+
+while(True):
+    temp_ram = os.popen("free -m")
+    temp_array = []
+    for x in temp_ram:
+        temp_array.append(x.rstrip())
+    in_use  = int(temp_array[1][27:31])
+    in_use_formatted = " " + str(in_use/1024)[0:4]+ " GB "
+    os.system("clear")
+    print(in_use_formatted)
+    #time.sleep(1)
+    break
+    
+#Mem:          15988        1061    
