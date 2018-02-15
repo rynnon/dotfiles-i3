@@ -269,7 +269,8 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp4s0
+#interface = wlp4s0
+interface = wlx8416f91d1abc
 interval = 3.0
 
 format-connected-prefix = "|    "

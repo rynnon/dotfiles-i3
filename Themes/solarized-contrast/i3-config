@@ -221,12 +221,12 @@ exec xrdb ~/.Xresources
 exec --no-startup-id xsettingsd
 exec --no-startup-id ~/.fehbg
 exec_always --no-startup-id ~/.config/polybar/launsh.sh
-exec --no-startup-id compton
+#exec --no-startup-id compton
 
 exec --no-startup-id xset s off
 exec --no-startup-id xset -dpms
 exec --no-startup-id xset s noblank
 
-exec sleep 10
+#exec sleep 10
 
 #exec --no-startup-id apply_settings
