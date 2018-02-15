@@ -201,6 +201,7 @@ bindsym $mod+l exec lock
 
 # file manager
 bindsym $mod+t exec thunar
+bindsym $mod+p exec pcmanfm-qt
 
 ################################################################################
 ################## autostart  ##################################################
@@ -217,7 +218,7 @@ exec --no-startup-id mpd ~/.mpd/mpd.conf
 #exec sleep 3
 
 exec xrdb ~/.Xresources
-#exec --no-startup-id xsettingsd
+exec --no-startup-id xsettingsd
 exec --no-startup-id ~/.fehbg
 exec_always --no-startup-id ~/.config/polybar/launsh.sh
 exec --no-startup-id compton
@@ -228,4 +229,4 @@ exec --no-startup-id xset s noblank
 
 exec sleep 10
 
-exec --no-startup-id apply_settings
+#exec --no-startup-id apply_settings

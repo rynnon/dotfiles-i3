@@ -20,4 +20,4 @@ fi
 PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 if [ -e /home/rynnon/.nix-profile/etc/profile.d/nix.sh ]; then . /home/rynnon/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 
-export QT_QPA_PLATFORMTHEME=gtk2
+#export QT_QPA_PLATFORMTHEME=gtk2
