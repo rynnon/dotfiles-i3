@@ -203,6 +203,13 @@ bindsym $mod+l exec lock
 bindsym $mod+t exec thunar
 bindsym $mod+p exec pcmanfm-qt
 
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec ~/.config/i3/increase-volume.sh
+bindsym XF86AudioLowerVolume exec ~/.config/i3/decrease-volume.sh
+
+# mute (doesnt work on vantas)
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
+
 ################################################################################
 ################## autostart  ##################################################
 ################################################################################
@@ -230,3 +237,7 @@ exec --no-startup-id xset s noblank
 #exec sleep 10
 
 #exec --no-startup-id apply_settings
+
+for_window [class="lxqt*"] floating disable
+for_window [class="lxqt-runner"] floating enable
+for_window [class="pcmanfm-qt"] floating disable
