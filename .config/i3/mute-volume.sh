@@ -1,4 +1,4 @@
 #!/bin/sh
 sink=`pactl list short sinks | grep RUNNING | cut -f1`                                                                                                                    
-#notify-send "Volume +5%" -t 500
+notify-send "mute volume toggle" -t 400
 /usr/bin/pactl set-sink-mute $sink toggle
