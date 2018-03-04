@@ -4,8 +4,11 @@
 '.platform-win32, .platform-linux':
   'ctrl-3': 'tree-view:toggle'
 
- 'body':
+'body':
   'ctrl-alt-r': 'window:reload'
+
+'atom-workspace':
+  'ctrl-i ctrl-g': 'toggle-gutter:gutter'
 
 # -- trash bindings --------------------------------------
 '.platform-win32 .tree-view, .platform-linux .tree-view':
