@@ -1,0 +1,48 @@
+"*":
+  Zen:
+    fullscreen: false
+    width: 90
+  core:
+    audioBeep: false
+    autoHideMenuBar: true
+    disabledPackages: [
+      "spell-check"
+      "github"
+      "git-diff"
+      "language-objective-c"
+      "open-on-github"
+      "background-tips"
+      "language-git"
+      "language-c"
+      "language-clojure"
+      "language-csharp"
+      "language-go"
+      "archive-view"
+      "welcome"
+      "autocomplete-snippets"
+      "snippets"
+    ]
+    packagesWithKeymapsDisabled: [
+      "toggle-gutter"
+    ]
+    telemetryConsent: "no"
+    themes: [
+      "one-dark-ui"
+      "monokai"
+    ]
+  editor:
+    fontFamily: "Ubuntu Mono"
+    fontSize: 17
+    invisibles: {}
+    lineHeight: 1.2
+    showIndentGuide: true
+  "exception-reporting":
+    userId: "86541cae-b9eb-4357-b344-cf76db6740d8"
+  fonts:
+    fontFamily: "Ubuntu Mono"
+  tabs:
+    alwaysShowTabBar: false
+  "toggle-gutter":
+    showGutters: false
+  welcome:
+    showOnStartup: false
