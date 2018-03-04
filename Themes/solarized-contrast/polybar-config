@@ -71,9 +71,9 @@ cursor-scroll = ns-resize
 ; Enable pseudo transparency
 ; Will automatically be enabled if a fully transparent
 ; background color is defined using `tray-background`
-tray-transparent = true
-;tray-background = #063340
-tray-background = ${xrdb.background}
+tray-transparent = false
+tray-background = #063340
+;tray-background = ${xrdb.background}
 
 [module/xwindow]
 type = internal/xwindow
