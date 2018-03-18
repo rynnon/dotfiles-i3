@@ -1,0 +1,228 @@
+! /home/rynnon/.Xresources
+
+! ------------------------------------------------------------------------------
+! scaling
+! ------------------------------------------------------------------------------
+
+Xft.dpi: 96
+Xcursor.size:24
+
+! ------------------------------------------------------------------------------
+! font settings
+! ------------------------------------------------------------------------------
+
+Xft.autohint: true
+Xft.antialias: true
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+
+
+! ------------------------------------------------------------------------------
+! urxvt
+! ------------------------------------------------------------------------------
+
+URxvt.font: xft:Ubuntu Mono:Regular:size=12
+URxvt.boldFont: xft:Ubuntu Mono:Bold:size=12
+URxvt.letterSpace: -1
+
+! fix for invisible underscore at certain fontsizes:
+URxvt.lineSpace: 1
+
+URxvt.internalBorder: 8
+
+! Add fallback fonts as laid out in `man 1 urxvt` under "font:" in the RESOURCES section
+
+! True transparency, opacity percentage set in square brackets before URxvt.background colour
+URxvt.depth: 16
+
+!'fake' transparency
+URxvt.transparent: false
+URxvt*shading: 67
+
+! Window size and position
+!URxvt*geometry: 60x22+50+100
+! Window size, let the Window Manager position it
+URxvt.geometry: 80x28
+
+URxvt.scrollstyle: plain
+URxvt.scrollBar: false
+URxvt.scrollBar_right: true
+URxvt.iconFile: /usr/share/icons/Faenza-Bunsen-common/apps/48/utilities-terminal.png
+
+! scrollback buffer lines - 65535 is max (64 is default)
+URxvt.saveLines:16384
+
+! Clickble URLs
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/x-www-browser
+URxvt.matcher.button: 3
+
+! sensible copy + paste
+URxvt.perl-ext-common:        default,xkr-clipboard
+URxvt.iso14755:               false
+URxvt.keysym.Shift-Control-C: perl:clipboard:copy
+URxvt.keysym.Control-Insert:  perl:clipboard:copy
+
+URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+URxvt.iso14755: False
+URxvt.perl-ext-common: default,clipboard
+
+
+! ------------------------------------------------------------------------------
+! xterm
+! ------------------------------------------------------------------------------
+
+XTerm*faceName:Ubuntu Mono:Regular:size=11
+XTerm*internalBorder: 8
+XTerm*borderWidth: 0
+XTERM*termName: xterm
+XTerm*metaSendsEscape: true
+XTerm*selectToClipboard: true
+XTerm*VT100*translations: #override \n\
+    Ctrl Shift <Key>V:  insert-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>C:        select-end(CLIPBOARD) \n\
+
+! ------------------------------------------------------------------------------
+! uxterm
+! ------------------------------------------------------------------------------
+
+UXTerm*faceName:Ubuntu Mono:Regular:size=11
+UXTerm*internalBorder: 8
+UXTerm*borderWidth: 0
+UXTerm*termName: uxterm
+UXTerm*metaSendsEscape: true
+UXTerm*selectToClipboard: true
+UXTerm*VT100*translations: #override \n\
+    Ctrl Shift <Key>V:  insert-selection(CLIPBOARD) \n\
+    Ctrl Shift <Key>C:        select-end(CLIPBOARD) \n\
+
+! ------------------------------------------------------------------------------
+! colors
+! ------------------------------------------------------------------------------
+
+! Generated with :
+! XRDB2Xreources.py, and then terminal.sexy
+!
+*.foreground:   #e5e5e5
+!*.background:   #0d1010
+!*.background:   #052331
+*.background:   #063441
+*.cursorColor:  #ffea2e
+
+! black
+*.color0:       #212121
+*.color8:       #424242
+
+! red
+*.color1:       #d61d29
+*.color9:       #e83b3f
+
+! green
+*.color2:       #457b24
+*.color10:      #7aba3a
+
+! yellow
+*.color3:       #f6981e
+*.color11:      #ffea2e
+
+! blue
+*.color4:       #c97c18
+*.color12:      #ffea2e
+
+! magenta
+*.color5:       #921ed4
+*.color13:      #aa4dbc
+
+! cyan
+*.color6:       #0e717c
+*.color14:      #26bbd1
+
+! white
+*.color7:       #efefef
+*.color15: #d9d9d9
+
+! Bold, Italic, Underline
+*.colorBD:     #f6981e
+!*.colorIT:
+!*.colorUL:
+
+
+!solarized version
+
+! special
+*.foreground:   #e5e5e5
+*.background:   #063340
+*.cursorColor:  #e83b3f
+
+! black
+*.color0:       #212121
+*.color8:       #424242
+
+! red
+*.color1:       #dc322f
+*.color9:       #e83b3f
+
+! green
+*.color2:       #859900
+*.color10:      #7aba3a
+
+! yellow
+*.color3:       #b58900
+*.color11:      #e1ce29
+
+! blue
+*.color4:       #185884
+*.color12:      #268bd2
+
+! magenta
+*.color5:       #921ed4
+*.color13:      #d33682
+
+! cyan
+*.color6:       #0e717c
+*.color14:      #eee8d5
+
+! white
+*.color7:       #eee8d5
+*.color15:      #fdf6e3
+
+
+
+#define bg          #063341
+#define fg          #e5e5e5
+#define black01     #0d1010
+#define black02     #212121
+#define white01     #d9d9d9
+#define white02     #efefef
+#define red01       #d61d29
+#define red02       #e83b3f
+#define green01     #457b24
+#define green02     #7aba3a
+#define yellow01    #f6981e
+#define yellow02    #ffea2e
+#define blue01      #c97c18
+#define blue02      #ffea2e
+
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+
+!                  bg       border   separator
+rofi.color-window: white01, blue01,   black02
+
+!                  bg       fg       bg-alt   hl-bg    hl-fg
+rofi.color-normal: white01, black01, white02, blue01,  white02
+
+!rofi.color-active: #000000, #268bd2, #070707, #e83b3f, #205171
+!rofi.color-urgent: #000000, #d700ff, #0c0c0c, #e83b3f, #ffc39c
+
+rofi.hide-scrollbar: true
+rofi.width: 500
+rofi.lines: 8
+
+rofi.bw: 4
+rofi.font: Noto Sans Regular 13
+

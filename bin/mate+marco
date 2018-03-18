@@ -1,3 +1,0 @@
-#!/bin/bash
-dconf write /org/mate/desktop/session/required-components/panel "'mate-panel'"
-dconf write /org/mate/desktop/session/required-components/windowmanager "'marco'"

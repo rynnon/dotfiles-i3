@@ -1,2 +1,0 @@
-#!/bin/bash
-python /usr/lib/python2.7/dist-packages/pip/__main__.py

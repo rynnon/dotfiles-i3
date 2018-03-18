@@ -1,2 +1,0 @@
-#!/bin/sh
-java -jar -Xmx2048M -Xmn256M -XX:+UseConcMarkSweepGC -XX:+CMSIncrementalMode -XX:-UseAdaptiveSizePolicy "/home/rynnon/minecraft-server (after humans)/forge-1.7.10-10.13.4.1614-1.7.10-universal.jar" nogui

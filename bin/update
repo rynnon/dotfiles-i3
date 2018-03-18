@@ -1,0 +1,4 @@
+#!/bin/bash
+sudo snap refresh
+flatpak update
+sudo apt update && sudo apt upgrade

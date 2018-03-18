@@ -1,2 +1,0 @@
-#!/bin/bash
-urxvt -e sshpass -f <(printf '%s\n' 0v6q9mq8W) ssh 10.0.1.3

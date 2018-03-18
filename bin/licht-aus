@@ -1,4 +1,0 @@
-#!/bin/bash
-
-#sshpass -p test ssh pi@rpi 'sudo send 10000 1 0'
-sshpass -p 'test' ssh pi@rpi 'source ~/.profile; licht-aus'

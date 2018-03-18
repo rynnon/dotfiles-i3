@@ -1,3 +1,0 @@
-#!/bin/bash
-
-sshpass -p 'test' ssh pi@rpi 'source ~/.profile; licht2-aus'
