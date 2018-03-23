@@ -1,0 +1,72 @@
+[KDE]
+Font=Ubuntu Mono,11,-1,5,50,0,0,0,0,0
+dummy=prevent-empty-group
+
+[Normal]
+Color Background[$d]
+Color Code Folding[$d]
+Color Current Line Number[$d]
+Color Highlighted Bracket[$d]
+Color Highlighted Line[$d]
+Color Icon Bar[$d]
+Color Indentation Line[$d]
+Color Line Number[$d]
+Color MarkType 1[$d]
+Color MarkType 2[$d]
+Color MarkType 3[$d]
+Color MarkType 4[$d]
+Color MarkType 5[$d]
+Color MarkType 6[$d]
+Color MarkType 7[$d]
+Color Modified Lines[$d]
+Color Replace Highlight[$d]
+Color Saved Lines[$d]
+Color Search Highlight[$d]
+Color Selection[$d]
+Color Separator[$d]
+Color Spelling Mistake Line[$d]
+Color Tab Marker[$d]
+Color Template Background[$d]
+Color Template Editable Placeholder[$d]
+Color Template Focused Editable Placeholder[$d]
+Color Template Not Editable Placeholder[$d]
+Color Word Wrap Marker[$d]
+Font=Ubuntu Mono,12,-1,5,50,0,0,0,0,0
+dummy=prevent-empty-group
+
+[Vim (dark)]
+Color Background=47,52,63
+Color Highlighted Line=6,51,64
+Font=Ubuntu Mono,12,-1,5,50,0,0,0,0,0
+dummy=prevent-empty-group
+
+[monokai]
+Color Background=6,51,64
+Color Code Folding=148,202,239
+Color Highlighted Bracket=83,85,72
+Color Highlighted Line=67,69,58
+Color Icon Bar=88,110,117
+Color Indentation Line=210,210,210
+Color Line Number=34,31,30
+Color MarkType 1=0,0,255
+Color MarkType 2=255,0,0
+Color MarkType 3=255,255,0
+Color MarkType 4=255,0,255
+Color MarkType 5=160,160,164
+Color MarkType 6=0,255,0
+Color MarkType 7=255,0,0
+Color Modified Lines=247,230,230
+Color Replace Highlight=0,255,0
+Color Saved Lines=186,249,206
+Color Search Highlight=255,231,146
+Color Selection=87,90,75
+Color Separator=137,136,135
+Color Spelling Mistake Line=191,3,3
+Color Tab Marker=210,210,210
+Color Template Background=214,210,208
+Color Template Editable Placeholder=186,249,206
+Color Template Focused Editable Placeholder=118,218,152
+Color Template Not Editable Placeholder=247,230,230
+Color Word Wrap Marker=237,237,237
+Font=Ubuntu Mono,12,-1,5,50,0,0,0,0,0
+dummy=prevent-empty-group

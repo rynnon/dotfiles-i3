@@ -1,0 +1,49 @@
+[Desktop Entry]
+DefaultProfile=Profile #1.profile
+
+[Favorite Profiles]
+Favorites=
+
+[General]
+Config Revision=10
+Days Meta Infos=30
+Last Session=
+Modified Notification=false
+Recent File List Entry Count=10
+Restore Window Configuration=true
+Save Meta Infos=true
+Show Full Path in Title=false
+Show Menu Bar=true
+Show Status Bar=false
+Show Tab Bar=false
+Startup Session=manual
+
+[MainWindow]
+Height 1200=1102
+State=AAAA/wAAAAD9AAAAAAAAA6AAAAQuAAAABAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAWAG0AYQBpAG4AVABvAG8AbABCAGEAcgAAAAAA/////wAAAAAAAAAA
+ToolBarsMovable=Disabled
+Width 1920=928
+
+[Notification Messages]
+HideMenuBarWarning=false
+Kate hide sidebars notification message=false
+
+[Shortcuts]
+kate_mdi_toolview_kate_private_plugin_katefileselectorplugin=Ctrl+3
+kate_mdi_toolview_kate_private_plugin_katefiletreeplugin=none
+kate_mdi_toolview_kateproject=none
+kate_mdi_toolview_kateprojectinfo=none
+
+[filebrowser]
+toolbar actions=show hidden,back,forward,bookmarks,sync_dir,configure
+
+[filetree]
+editShade=44,104,138
+listMode=false
+shadingEnabled=true
+showFullPathOnRoots=false
+sortRole=0
+viewShade=58,96,142
+
+[project]
+autorepository=
