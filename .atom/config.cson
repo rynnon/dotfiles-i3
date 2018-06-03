@@ -2,6 +2,8 @@
   Zen:
     fullscreen: false
     width: 90
+  "atom-latex":
+    preview_after_build: "Do nothing"
   core:
     audioBeep: false
     autoHideMenuBar: true
